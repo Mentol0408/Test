@@ -1,0 +1,67 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Забираем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Поднимаем SSH-агент и добавляем ключ
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      # 3️⃣ Добавляем сервер в known_hosts
+      - name: Add server to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      # 4️⃣ (Опционально) Проверка структуры репозитория
+      - name: Debug repo structure
+        run: |
+          echo "Repository root:"
+          ls -la
+          echo "App directory:"
+          ls -la app || true
+
+      # 5️⃣ Синхронизация проекта на сервер
+      - name: Sync project to server
+        run: |
+          rsync -az \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "node_modules" \
+            --exclude ".env" \
+            ./ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}/
+
+      # 6️⃣ Сборка и деплой через Docker Compose
+      - name: Build & Deploy with Docker Compose
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            set -e
+
+            cd ${{ secrets.SERVER_PATH }}
+
+            # Вход в Docker Hub
+            echo '${{ secrets.DOCKER_HUB_TOKEN }}' | docker login \
+              -u '${{ secrets.DOCKER_HUB_USERNAME }}' \
+              --password-stdin
+
+            # Сборка и запуск контейнеров
+            docker compose pull
+            NEXT_DISABLE_ESLINT=1 NEXT_IGNORE_TYPE_ERRORS=1 docker compose build
+            docker compose up -d
+
+            docker logout
+          "

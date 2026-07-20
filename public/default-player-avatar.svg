@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Player avatar">
+  <defs>
+    <radialGradient id="glow" cx="38%" cy="22%" r="76%">
+      <stop offset="0" stop-color="#ffb2a8"/>
+      <stop offset="0.45" stop-color="#c84b3f"/>
+      <stop offset="1" stop-color="#511815"/>
+    </radialGradient>
+    <linearGradient id="visor" x1="21" x2="75" y1="39" y2="39" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8d37a"/>
+      <stop offset="0.5" stop-color="#fff1a8"/>
+      <stop offset="1" stop-color="#d78a35"/>
+    </linearGradient>
+  </defs>
+  <circle cx="48" cy="48" r="47" fill="url(#glow)"/>
+  <circle cx="48" cy="48" r="45" fill="none" stroke="#ffffff" stroke-opacity=".14" stroke-width="2"/>
+  <path fill="#211716" d="M21 43c0-16 11-27 27-27s27 11 27 27v19c0 11-9 19-27 19S21 73 21 62V43Z"/>
+  <path fill="#3a2421" d="M26 44c0-13 9-22 22-22s22 9 22 22v17c0 8-7 14-22 14s-22-6-22-14V44Z"/>
+  <path fill="url(#visor)" d="M25 38h46c3 0 5 2 5 5v6H20v-6c0-3 2-5 5-5Z"/>
+  <path fill="#130d0c" fill-opacity=".64" d="M27 43h42v8H27z"/>
+  <path fill="#fff" fill-opacity=".35" d="M30 41h28v3H30z"/>
+  <path fill="#130d0c" d="M33 58h30v8c0 5-6 8-15 8s-15-3-15-8v-8Z"/>
+  <path fill="#8f332c" d="M38 60h20v4H38z"/>
+  <path fill="#ffffff" fill-opacity=".12" d="M48 16c16 0 27 11 27 27v3c-7-13-17-20-32-20-8 0-15 2-21 6 4-10 14-16 26-16Z"/>
+</svg>

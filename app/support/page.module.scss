@@ -1,0 +1,310 @@
+/* Support / tickets — v2 "Molten Steel" bespoke reskin. Inside .rw-root. */
+
+$glass: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+$display: var(--font-rw-display), "Oswald", sans-serif;
+$mono: var(--font-rw-mono), monospace;
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(60% 40% at 80% 0%, rgba(255, 106, 26, 0.12), transparent 60%);
+  }
+}
+
+/* ---- Hero ---- */
+.hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid var(--rw-line);
+  background: $glass;
+  backdrop-filter: blur(16px);
+}
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 640px;
+
+  h1 { font-family: $display; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; text-transform: uppercase; line-height: 0.95; margin: 0; }
+  p { color: var(--rw-muted); line-height: 1.6; margin: 0; }
+}
+.eyebrow {
+  font-family: $mono;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--rw-orange-2);
+  margin: 0;
+}
+.heroPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+
+  span {
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--rw-line-2);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--rw-muted);
+    font-size: 12px;
+  }
+}
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 12px;
+  border: 1px solid var(--rw-line-2);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--rw-text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+  &:hover { border-color: var(--rw-line-3); background: rgba(255, 255, 255, 0.06); }
+}
+
+/* ---- Cards ---- */
+.card {
+  padding: 28px;
+  border-radius: 20px;
+  border: 1px solid var(--rw-line);
+  background: $glass;
+  backdrop-filter: blur(14px);
+}
+.stateCard {
+  h2 { font-family: $display; text-transform: uppercase; margin: 0 0 6px; }
+  p { color: var(--rw-muted); margin: 0; }
+}
+.authCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+
+  h2 { font-family: $display; font-size: 22px; text-transform: uppercase; margin: 0 0 8px; }
+  p { color: var(--rw-muted); line-height: 1.6; margin: 0 0 18px; max-width: 520px; }
+}
+.authIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: rgba(255, 106, 26, 0.12);
+  border: 1px solid rgba(255, 106, 26, 0.3);
+  color: var(--rw-amber);
+  font-family: $display;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.supportGrid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+  @media (min-width: 900px) { grid-template-columns: 0.9fr 1.1fr; align-items: start; }
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+
+  h2 { font-family: $display; font-size: 22px; text-transform: uppercase; margin: 0; }
+  p { color: var(--rw-faint); font-size: 13px; margin: 0; }
+}
+.sectionKicker {
+  display: block;
+  font-family: $mono;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--rw-orange-2);
+  margin-bottom: 4px;
+}
+.steamIdBadge {
+  font-family: $mono;
+  font-size: 11px !important;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--rw-line-2);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--rw-faint);
+  white-space: nowrap;
+}
+
+/* ---- Form ---- */
+.ticketForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  label { display: flex; flex-direction: column; gap: 8px; }
+  label > span { font-size: 13px; font-weight: 500; color: var(--rw-muted); }
+  input, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--rw-line-2);
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--rw-text);
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    &::placeholder { color: var(--rw-faint); }
+    &:focus { border-color: rgba(255, 106, 26, 0.5); }
+  }
+  textarea { min-height: 120px; resize: vertical; }
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: 12px;
+  border: none;
+  background: var(--rw-grad);
+  color: #140803;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 30px -8px rgba(255, 90, 20, 0.6);
+  transition: transform 0.2s, filter 0.2s;
+  &:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.04); }
+  &:disabled { opacity: 0.55; cursor: default; }
+}
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 11px;
+  border: 1px solid var(--rw-line-2);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--rw-text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  &:hover:not(:disabled) { border-color: var(--rw-line-3); background: rgba(255, 255, 255, 0.06); }
+  &:disabled { opacity: 0.55; cursor: default; }
+}
+
+.notice {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 176, 32, 0.3);
+  background: rgba(255, 176, 32, 0.08);
+  color: var(--rw-amber);
+  font-size: 13px;
+}
+
+/* ---- Ticket list ---- */
+.ticketList { display: flex; flex-direction: column; gap: 16px; }
+.ticketCard {
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--rw-line);
+  background: rgba(255, 255, 255, 0.02);
+}
+.ticketHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+
+  h3 { font-size: 16px; font-weight: 600; margin: 0 0 4px; }
+  p { font-size: 12px; color: var(--rw-faint); margin: 0; }
+}
+.status {
+  flex-shrink: 0;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--rw-line-2);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--rw-muted);
+}
+.statusOpen { border-color: rgba(255, 176, 32, 0.35); background: rgba(255, 176, 32, 0.1); color: var(--rw-amber); }
+.statusInProgress { border-color: rgba(96, 165, 250, 0.35); background: rgba(96, 165, 250, 0.1); color: #93c5fd; }
+.statusResolved { border-color: rgba(74, 222, 128, 0.35); background: rgba(74, 222, 128, 0.1); color: #86efac; }
+.statusClosed { border-color: var(--rw-line-2); background: rgba(255, 255, 255, 0.03); color: var(--rw-faint); }
+
+.messages { display: flex; flex-direction: column; gap: 10px; }
+.message {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--rw-line);
+  background: rgba(0, 0, 0, 0.25);
+
+  p { margin: 6px 0 0; color: var(--rw-text); font-size: 14px; line-height: 1.55; }
+}
+.message_admin, .message_moderator {
+  border-color: rgba(255, 106, 26, 0.3);
+  background: rgba(255, 106, 26, 0.06);
+}
+.messageMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  strong { font-size: 13px; color: var(--rw-orange-2); }
+  span { font-size: 11px; color: var(--rw-faint); font-family: $mono; }
+}
+
+.replyBox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rw-line);
+
+  textarea {
+    width: 100%;
+    min-height: 72px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--rw-line-2);
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--rw-text);
+    font: inherit;
+    font-size: 14px;
+    resize: vertical;
+    outline: none;
+    &::placeholder { color: var(--rw-faint); }
+    &:focus { border-color: rgba(255, 106, 26, 0.5); }
+  }
+  button { align-self: flex-start; }
+}
+
+.emptyState { padding: 32px; text-align: center; color: var(--rw-faint); font-size: 14px; }

@@ -1,0 +1,22 @@
+{
+  "servers": {
+    "hard": {
+      "id": 1,
+      "ip": "195.18.27.40",
+      "port": 36001,
+      "pass": "N5PNyhxy23fWL8K"
+    },
+    "vanilla": {
+      "id": 2,
+      "ip": "185.189.255.248",
+      "port": 36001,
+      "pass": "fLn2wXL4vqAZmPg"
+    },
+    "chill": {
+      "id": 3,
+      "ip": "185.207.214.202",
+      "port": 36401,
+      "pass": "N5PNyhxy23fWL8K"
+    }
+  }
+}

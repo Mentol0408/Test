@@ -1,0 +1,342 @@
+/* =====================================================================
+   RUST WAY — "MOLTEN STEEL" DESIGN SYSTEM
+   Scoped design tokens + atmospheric effects + keyframes.
+   All custom props live under .rw-root so nothing leaks into the
+   existing site. Keyframes are namespaced with rw- prefixes.
+   ===================================================================== */
+
+:root {
+  /* ---- Surfaces ---- */
+  /* Warm palette pulled from rust-way.ru */
+  --rw-bg: #0c0805;
+  --rw-bg-2: #140d09;
+  --rw-panel: #18110c;
+  --rw-panel-2: #1e150f;
+  --rw-panel-3: #271b13;
+  --rw-line: rgba(255, 238, 225, 0.08);
+  --rw-line-2: rgba(255, 238, 225, 0.13);
+  --rw-line-3: rgba(255, 238, 225, 0.22);
+
+  /* ---- Text (warm cream) ---- */
+  --rw-text: #f6ece4;
+  --rw-muted: #b39a8a;
+  --rw-faint: #877566;
+
+  /* ---- Brand: softened amber / orange / rust ---- */
+  --rw-orange: #ff8a3d;
+  --rw-orange-2: #ffb454;
+  --rw-amber: #ffb454;
+  --rw-ember: #e2543a;
+  --rw-rust: #b94130;
+
+  /* ---- Server accents ---- */
+  --rw-chill: #e878ff;
+  --rw-hard: #ff7a4a;
+  --rw-vanilla: #a6d24a;
+
+  /* ---- Signature gradients (warm, not neon) ---- */
+  --rw-grad: linear-gradient(115deg, #ffb454 0%, #ff8a3d 48%, #e2543a 100%);
+  --rw-grad-soft: linear-gradient(135deg, rgba(255, 180, 84, 0.16), rgba(226, 84, 58, 0.16));
+  --rw-glow: 0 0 0 1px rgba(255, 138, 61, 0.22), 0 18px 60px -12px rgba(226, 84, 58, 0.5);
+}
+
+.rw-root {
+  --font-rw-display: var(--font-rw-body);
+  color: var(--rw-text);
+  background: var(--rw-bg);
+  font-family: var(--font-rw-body), "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Global branded scrollbar */
+html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #140d09; }
+::-webkit-scrollbar-thumb { background: rgba(255, 138, 61, 0.45); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 138, 61, 0.7); }
+
+/* Utility font families */
+.rw-display { font-family: var(--font-rw-display), "Inter", sans-serif; }
+.rw-mono { font-family: var(--font-rw-mono), "JetBrains Mono", monospace; }
+
+/* Gradient text */
+.rw-gradient-text {
+  background: var(--rw-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Glass panel */
+.rw-glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--rw-line);
+}
+
+/* Hairline top highlight used on premium cards */
+.rw-topline { position: relative; }
+.rw-topline::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  opacity: 0.5;
+}
+
+/* ---- Atmospheric background layers ---- */
+
+/* Faint technical grid, radially masked */
+.rw-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+}
+
+/* Grain / film noise overlay */
+.rw-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Aurora molten blobs */
+.rw-aurora { position: absolute; inset: 0; overflow: hidden; }
+.rw-aurora::before,
+.rw-aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  will-change: transform;
+}
+.rw-aurora::before {
+  width: 46vw; height: 46vw;
+  left: -8vw; top: -12vw;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 138, 61, 0.6), transparent 62%);
+  animation: rw-drift1 22s ease-in-out infinite alternate;
+}
+.rw-aurora::after {
+  width: 40vw; height: 40vw;
+  right: -6vw; top: 8vw;
+  background: radial-gradient(circle at 60% 40%, rgba(226, 84, 58, 0.42), transparent 60%);
+  animation: rw-drift2 26s ease-in-out infinite alternate;
+}
+
+/* Radial spotlight helper */
+.rw-spot {
+  background: radial-gradient(60% 60% at 50% 0%, rgba(255, 138, 61, 0.16), transparent 70%);
+}
+
+/* Premium primary button */
+.rw-btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: var(--rw-grad);
+  color: #140803;
+  box-shadow: 0 10px 30px -8px rgba(255, 120, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.rw-btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.55) 45%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.rw-btn-primary:hover::after { transform: translateX(120%); }
+
+/* Ghost / outline button */
+.rw-btn-ghost {
+  border: 1px solid var(--rw-line-2);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--rw-text);
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+}
+.rw-btn-ghost:hover {
+  border-color: var(--rw-line-3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Conic rotating border (for featured cards / avatars) */
+.rw-conic {
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(255, 138, 61, 0.9) 60deg, transparent 140deg, transparent 360deg);
+  animation: rw-spin 6s linear infinite;
+}
+
+/* Scanline sweep for media */
+.rw-scan::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(transparent 0%, rgba(255, 138, 61, 0.06) 50%, transparent 100%);
+  background-size: 100% 8px;
+  mix-blend-mode: overlay;
+  animation: rw-scan 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Custom scrollbar for scroll regions */
+.rw-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.rw-scroll::-webkit-scrollbar-thumb { background: rgba(255, 138, 61, 0.4); border-radius: 8px; }
+.rw-scroll::-webkit-scrollbar-track { background: transparent; }
+
+/* =====================================================================
+   KEYFRAMES
+   ===================================================================== */
+@keyframes rw-drift1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(6vw, 4vw, 0) scale(1.15); }
+}
+@keyframes rw-drift2 {
+  0% { transform: translate3d(0, 0, 0) scale(1.1); }
+  100% { transform: translate3d(-5vw, 3vw, 0) scale(0.9); }
+}
+@keyframes rw-spin { to { transform: rotate(360deg); } }
+@keyframes rw-scan { to { background-position: 0 -1000px; } }
+@keyframes rw-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes rw-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+@keyframes rw-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes rw-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Live status dot */
+.rw-live-dot {
+  position: relative;
+  border-radius: 999px;
+  background: #4ade80;
+  animation: rw-pulse-ring 2.2s infinite;
+}
+
+/* Floating helper */
+.rw-float { animation: rw-float 7s ease-in-out infinite; }
+
+/* Loading skeleton shimmer */
+.rw-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--rw-panel-2);
+}
+.rw-skeleton::after {
+  content: "";
+  position: absolute; inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  animation: rw-shimmer 1.6s infinite;
+}
+
+/* Marquee track */
+.rw-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: rw-marquee 32s linear infinite;
+}
+.rw-marquee-track:hover { animation-play-state: paused; }
+
+/* ---- Floating embers (glowing sparks distributed across the hero) ---- */
+.rw-ember {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0;
+  background: radial-gradient(circle, #fff 0%, rgba(255, 196, 104, 0.95) 32%, rgba(255, 92, 22, 0.6) 60%, transparent 74%);
+  box-shadow: 0 0 12px 3px rgba(255, 130, 40, 0.7);
+  will-change: transform, opacity;
+  animation: rw-ember-float var(--dur, 8s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes rw-ember-float {
+  0% { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
+  18% { opacity: var(--op, 0.85); }
+  50% { transform: translate3d(var(--drift, 12px), calc(-1 * var(--rise, 60px)), 0) scale(1.15); opacity: var(--op, 0.85); }
+  82% { opacity: calc(var(--op, 0.85) * 0.45); }
+  100% { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
+}
+
+/* ---- Ember stream (sparks rising from the campfire) ---- */
+.rw-spark {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0;
+  background: radial-gradient(circle, #fff 0%, rgba(255, 200, 110, 0.95) 34%, rgba(255, 96, 24, 0.6) 62%, transparent 74%);
+  box-shadow: 0 0 8px 2px rgba(255, 130, 45, 0.8);
+  will-change: transform, opacity;
+  animation: rw-spark-rise var(--dur, 3.6s) ease-in infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes rw-spark-rise {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0; }
+  8% { opacity: var(--op, 0.9); }
+  68% { opacity: calc(var(--op, 0.9) * 0.7); }
+  100% { transform: translate3d(var(--sx, 30px), calc(-1 * var(--sy, 260px)), 0) scale(0.2); opacity: 0; }
+}
+/* Flickering fire glow at the source */
+.rw-fire-glow {
+  position: absolute;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 150, 40, 0.6), rgba(255, 120, 55, 0.25) 45%, transparent 66%);
+  filter: blur(6px);
+  animation: rw-fire-flicker 2.4s ease-in-out infinite;
+}
+@keyframes rw-fire-flicker {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  30% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.12); }
+  55% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.96); }
+}
+
+/* ---- Page-wide drifting ambient glows ---- */
+.rw-drift-glow {
+  will-change: transform;
+  animation: rw-drift-glow var(--dur, 20s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes rw-drift-glow {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(4%, -3%, 0) scale(1.12); }
+}
+
+/* ---- God-ray light beams ---- */
+.rw-beam {
+  position: absolute;
+  background: linear-gradient(180deg, rgba(255, 156, 66, 0.3), transparent 72%);
+  filter: blur(22px);
+  will-change: transform, opacity;
+  animation: rw-beam-sway 13s ease-in-out infinite;
+}
+@keyframes rw-beam-sway {
+  0%, 100% { opacity: 0.5; transform: rotate(var(--rot, 14deg)) translateX(0); }
+  50% { opacity: 0.9; transform: rotate(var(--rot, 14deg)) translateX(26px); }
+}
+
+/* Reduced motion: disable decorative animation */
+@media (prefers-reduced-motion: reduce) {
+  .rw-root *,
+  .rw-aurora::before,
+  .rw-aurora::after,
+  .rw-conic,
+  .rw-marquee-track,
+  .rw-float,
+  .rw-live-dot {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Selection */
+.rw-root ::selection { background: rgba(255, 138, 61, 0.35); color: #fff; }

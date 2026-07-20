@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Netlify auto-installs @netlify/plugin-nextjs when it detects Next.js.
+# distDir is "build" (see next.config.ts) — the plugin reads it from the config.

@@ -1,0 +1,40 @@
+<svg width="1920" height="190" viewBox="0 0 1920 190" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<mask id="mask0_497_323" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="190">
+<rect width="1920" height="190" fill="url(#pattern0_497_323)"/>
+</mask>
+<g mask="url(#mask0_497_323)">
+<g filter="url(#filter0_f_497_323)">
+<ellipse cx="961" cy="243" rx="556" ry="85" fill="#B94130"/>
+</g>
+<g filter="url(#filter1_f_497_323)">
+<ellipse cx="1767.94" cy="31.0577" rx="337.632" ry="34.7115" fill="#2B2B2B"/>
+</g>
+<g filter="url(#filter2_f_497_323)">
+<ellipse cx="165.876" cy="188.434" rx="303.306" ry="21.9231" fill="#2B2B2B"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_497_323" x="318.6" y="71.6" width="1284.8" height="342.8" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="43.2" result="effect1_foregroundBlur_497_323"/>
+</filter>
+<filter id="filter1_f_497_323" x="1236.81" y="-197.154" width="1062.26" height="456.423" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="96.75" result="effect1_foregroundBlur_497_323"/>
+</filter>
+<filter id="filter2_f_497_323" x="-330.93" y="-26.9893" width="993.612" height="430.846" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="96.75" result="effect1_foregroundBlur_497_323"/>
+</filter>
+<pattern id="pattern0_497_323" patternUnits="userSpaceOnUse" patternTransform="matrix(5.5706 0 0 11.1412 0 0)" preserveAspectRatio="none" viewBox="0 0 3.46 6.92" width="1" height="1">
+<use xlink:href="#pattern0_497_323_inner" transform="translate(-3.46 0)"/>
+<g id="pattern0_497_323_inner">
+<circle cx="0.5" cy="0.5" r="0.5" fill="#D9D9D9"/>
+</g>
+<use xlink:href="#pattern0_497_323_inner" transform="translate(-1.73 3.46)"/>
+<use xlink:href="#pattern0_497_323_inner" transform="translate(1.73 3.46)"/>
+</pattern></defs>
+</svg>

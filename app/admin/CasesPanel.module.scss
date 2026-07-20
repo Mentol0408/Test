@@ -1,0 +1,108 @@
+/* Admin · Cases panel — v2 "Molten Steel" bespoke reskin. Inside .rw-root. */
+
+$glass: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.012));
+$display: var(--font-rw-display), "Oswald", sans-serif;
+$mono: var(--font-rw-mono), monospace;
+
+.panel { display: flex; flex-direction: column; gap: 20px; }
+.layout { display: grid; gap: 20px; grid-template-columns: 1fr; @media (min-width: 1000px) { grid-template-columns: 300px 1fr; align-items: start; } }
+
+.card, .sidebarCard {
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid var(--rw-line);
+  background: $glass;
+  backdrop-filter: blur(12px);
+}
+.headerRow { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.sectionHead { font-family: $display; font-size: 17px; font-weight: 600; text-transform: uppercase; margin: 0 0 14px; }
+.hint { color: var(--rw-faint); font-size: 12.5px; margin: 0; line-height: 1.5; }
+.topActions, .inlineActions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ---- Case list (sidebar) ---- */
+.caseList { display: flex; flex-direction: column; gap: 8px; }
+.caseCard {
+  display: flex; flex-direction: column; gap: 6px; padding: 12px 14px;
+  border-radius: 12px; border: 1px solid var(--rw-line); background: rgba(255, 255, 255, 0.02);
+  cursor: pointer; text-align: left; transition: all 0.2s; width: 100%;
+  &:hover { border-color: var(--rw-line-2); background: rgba(255, 255, 255, 0.04); }
+}
+.caseCardActive { border-color: var(--rw-orange); background: rgba(255, 106, 26, 0.1); }
+.caseCardHead { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 600; font-size: 14px; }
+.caseMeta { display: flex; gap: 10px; font-size: 11.5px; color: var(--rw-faint); font-family: $mono; }
+
+/* ---- Form ---- */
+.formGrid { display: grid; gap: 14px; grid-template-columns: 1fr; @media (min-width: 560px) { grid-template-columns: 1fr 1fr; } }
+.field {
+  display: flex; flex-direction: column; gap: 6px;
+  label, > span { font-size: 12px; font-weight: 500; color: var(--rw-muted); }
+  input, textarea, select {
+    width: 100%; padding: 10px 12px; border-radius: 10px;
+    border: 1px solid var(--rw-line-2); background: rgba(0, 0, 0, 0.3); color: var(--rw-text);
+    font: inherit; font-size: 14px; outline: none; transition: border-color 0.2s;
+    &::placeholder { color: var(--rw-faint); }
+    &:focus { border-color: rgba(255, 106, 26, 0.5); }
+  }
+  textarea { min-height: 80px; resize: vertical; }
+}
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.checkbox {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--rw-muted); cursor: pointer;
+  input { width: 16px; height: 16px; accent-color: var(--rw-orange); }
+}
+.systemRow {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding: 14px 16px; border-radius: 14px; border: 1px solid var(--rw-line);
+  background: rgba(255, 255, 255, 0.02); margin-bottom: 4px;
+}
+
+/* ---- Item table ---- */
+.itemTable { display: flex; flex-direction: column; gap: 8px; }
+.itemRow {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 14px; border-radius: 12px; border: 1px solid var(--rw-line); background: rgba(255, 255, 255, 0.02);
+}
+.itemMain { display: flex; flex-direction: column; gap: 3px; min-width: 0; strong { font-size: 14px; } }
+.itemMeta { display: flex; gap: 10px; font-size: 11.5px; color: var(--rw-faint); font-family: $mono; }
+
+/* ---- Status ---- */
+.statusBadge {
+  padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; text-transform: uppercase;
+  border: 1px solid var(--rw-line-2); background: rgba(255, 255, 255, 0.04); color: var(--rw-muted);
+}
+.statusOn, .metaOn { border-color: rgba(74, 222, 128, 0.35); background: rgba(74, 222, 128, 0.1); color: #86efac; }
+.statusOff, .metaOff { border-color: var(--rw-line-2); background: rgba(255, 255, 255, 0.03); color: var(--rw-faint); }
+
+/* ---- Buttons ---- */
+.primaryButton {
+  height: 42px; padding: 0 18px; border-radius: 11px; border: none;
+  background: var(--rw-grad); color: #140803; font-weight: 700; font-size: 14px; cursor: pointer;
+  box-shadow: 0 8px 22px -10px rgba(255, 90, 20, 0.6);
+  transition: transform 0.2s, filter 0.2s;
+  &:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.05); }
+  &:disabled { opacity: 0.5; cursor: default; }
+}
+.secondaryButton {
+  height: 42px; padding: 0 16px; border-radius: 11px;
+  border: 1px solid var(--rw-line-2); background: rgba(255, 255, 255, 0.03); color: var(--rw-text);
+  font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s;
+  &:hover:not(:disabled) { border-color: var(--rw-line-3); background: rgba(255, 255, 255, 0.06); }
+  &:disabled { opacity: 0.5; cursor: default; }
+}
+.dangerButton {
+  height: 42px; padding: 0 16px; border-radius: 11px;
+  border: 1px solid rgba(255, 61, 32, 0.4); background: rgba(255, 61, 32, 0.1); color: #ff8a70;
+  font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s;
+  &:hover:not(:disabled) { background: rgba(255, 61, 32, 0.18); }
+  &:disabled { opacity: 0.5; cursor: default; }
+}
+
+/* ---- States ---- */
+.message {
+  padding: 11px 14px; border-radius: 11px; font-size: 13px; line-height: 1.5;
+  border: 1px solid rgba(74, 222, 128, 0.3); background: rgba(74, 222, 128, 0.1); color: #86efac;
+}
+.warning {
+  padding: 11px 14px; border-radius: 11px; font-size: 13px; line-height: 1.5;
+  border: 1px solid rgba(255, 176, 32, 0.3); background: rgba(255, 176, 32, 0.08); color: var(--rw-amber);
+}
