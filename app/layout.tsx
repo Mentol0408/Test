@@ -10,6 +10,7 @@ const TikTokSans = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.APP_BASE_URL || "https://rust-way.ru"),
   title: "RUST WAY — Комплекс премиальных Rust-серверов",
   description: "Rust Way — комплекс премиальных игровых серверов: кастомные плагины, честная экономика и реальные Steam-скины.",
   icons: {
