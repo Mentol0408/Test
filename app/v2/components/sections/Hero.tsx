@@ -230,6 +230,20 @@ export function Hero() {
                 </div>
               </div>
             </Floaty>
+
+            <Floaty amplitude={6} duration={7.5} delay={1.5} className="absolute right-3 top-[418px] w-[288px]">
+              <div className="rw-glass rounded-2xl p-5">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--rw-hard)]/15 text-[var(--rw-hard)]">
+                    <Icon name="Target" size={20} />
+                  </span>
+                  <div>
+                    <div className="text-sm font-semibold text-[var(--rw-text)]">Баунти турнир</div>
+                    <div className="text-xs text-[var(--rw-faint)]">Охота за головами · PvP-ивент</div>
+                  </div>
+                </div>
+              </div>
+            </Floaty>
           </div>
         </div>
       </Container>
