@@ -145,7 +145,7 @@ export const SERVERS: ServerData[] = [
     online: 12,
     capacity: 200,
     ping: 20,
-    logo: "/media.jfif",
+    logo: "/media-logo.png",
     image: "/media.jfif",
     subtitle: "Медиа · Стримы · Rust",
     difficultyNote: "Комфортная игра",
