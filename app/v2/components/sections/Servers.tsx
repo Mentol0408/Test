@@ -222,15 +222,15 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
               {/* Compact stats — mobile only, like the classic card */}
               <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 rounded-2xl border border-[var(--rw-line)] bg-black/25 p-4 lg:hidden">
                 {[
-                  { icon: "Skull", label: "Сложность", value: server.difficulty },
+                  { icon: "Skull", label: "", value: server.difficulty },
                   { icon: "Map", label: "Карта", value: String(server.mapSize) },
                   { icon: "Users", label: "Лимит", value: String(server.teamLimit) },
                   { icon: "Signal", label: "Пинг", value: `${server.ping} ms` },
                 ].map((s) => (
-                  <div key={s.label} className="flex items-center gap-2 text-[13px]">
-                    <Icon name={s.icon} size={14} style={{ color: accent }} />
-                    <span className="text-[var(--rw-faint)]">{s.label}:</span>
-                    <span className="font-semibold text-[var(--rw-text)]">{s.value}</span>
+                  <div key={s.icon} className="flex min-w-0 items-center gap-2 whitespace-nowrap text-[13px]">
+                    <Icon name={s.icon} size={14} className="shrink-0" style={{ color: accent }} />
+                    {s.label && <span className="text-[var(--rw-faint)]">{s.label}:</span>}
+                    <span className="truncate font-semibold text-[var(--rw-text)]">{s.value}</span>
                   </div>
                 ))}
               </div>
