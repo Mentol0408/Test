@@ -351,17 +351,18 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
   50% { transform: translate3d(4%, -3%, 0) scale(1.12); }
 }
 
-/* ---- God-ray light beams ---- */
+/* ---- God-ray light beams (sun breaking through clouds) ---- */
 .rw-beam {
   position: absolute;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 72%);
-  filter: blur(22px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 250, 240, 0.14) 46%, transparent 80%);
+  filter: blur(20px);
+  mix-blend-mode: screen;
   will-change: transform, opacity;
   animation: rw-beam-sway 13s ease-in-out infinite;
 }
 @keyframes rw-beam-sway {
-  0%, 100% { opacity: 0.5; transform: rotate(var(--rot, 14deg)) translateX(0); }
-  50% { opacity: 0.9; transform: rotate(var(--rot, 14deg)) translateX(26px); }
+  0%, 100% { opacity: 0.72; transform: rotate(var(--rot, 14deg)) translateX(0); }
+  50% { opacity: 1; transform: rotate(var(--rot, 14deg)) translateX(26px); }
 }
 
 /* Reduced motion: disable decorative animation */

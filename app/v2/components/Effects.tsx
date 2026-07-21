@@ -201,6 +201,11 @@ export function LightBeams({ className }: { className?: string }) {
   ];
   return (
     <div className={cn("pointer-events-none absolute inset-x-0 top-0 h-[70%] overflow-hidden", className)} aria-hidden>
+      {/* Bright "cloud gap" the rays break through */}
+      <div
+        className="absolute left-1/2 top-[-14%] h-[46%] w-[64%] -translate-x-1/2 blur-3xl"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(255,255,255,0.28), rgba(255,250,240,0.08) 45%, transparent 72%)", mixBlendMode: "screen" }}
+      />
       {beams.map((b, i) => (
         <span
           key={i}
