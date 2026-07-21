@@ -77,20 +77,27 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
   color: transparent;
 }
 
-/* Animated rainbow shimmer text (Hall of Fame — like the classic site) */
-.rw-rainbow {
+/* Animated gold shimmer text (Hall of Fame — like a spinning gold coin) */
+.rw-gold {
   background-image: linear-gradient(
-    90deg,
-    #ff5f6d, #ffb454, #ffe14a, #a6d24a, #4ade80, #38bdf8, #a78bfa, #e878ff, #ff5f6d
+    100deg,
+    #9a6a12 0%,
+    #e6b84e 14%,
+    #fff4cf 27%,
+    #f7d874 40%,
+    #b3810f 54%,
+    #f7d874 70%,
+    #fff4cf 84%,
+    #b3810f 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: rw-rainbow-shift 4s linear infinite;
+  animation: rw-gold-shift 3.6s linear infinite;
 }
-@keyframes rw-rainbow-shift {
+@keyframes rw-gold-shift {
   0% { background-position: 0% center; }
   100% { background-position: -200% center; }
 }
