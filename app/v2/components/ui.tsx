@@ -219,7 +219,7 @@ export function Panel({
 
 export function LivePill({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/[0.07] px-3 py-1 text-xs font-medium text-emerald-300", className)}>
+    <span className={cn("inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/[0.07] px-3.5 py-1.5 text-[13px] font-medium text-emerald-300", className)}>
       <span className="rw-live-dot h-2 w-2" />
       {children}
     </span>

@@ -100,8 +100,8 @@ export function Hero() {
               className="flex flex-wrap items-center gap-3"
             >
               <LivePill>{totalOnline} игроков в бою прямо сейчас</LivePill>
-              <span className="rw-mono inline-flex items-center gap-2 rounded-full border border-[var(--rw-line-2)] bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[var(--rw-muted)]">
-                <Icon name="RefreshCw" size={12} className="text-[var(--rw-orange-2)]" />
+              <span className="rw-mono inline-flex items-center gap-2 rounded-full border border-[var(--rw-line-2)] bg-white/[0.03] px-3.5 py-1.5 text-xs uppercase tracking-[0.2em] text-[var(--rw-muted)]">
+                <Icon name="RefreshCw" size={13} className="text-[var(--rw-orange-2)]" />
                 Вайп каждую пятницу
               </span>
             </motion.div>
@@ -175,14 +175,14 @@ export function Hero() {
           </div>
 
           {/* ---- Right: floating countdown + cards ---- */}
-          <div className="relative hidden h-full min-h-[440px] lg:block">
-            <Floaty amplitude={6} duration={7} className="absolute right-0 top-0 w-[300px]">
+          <div className="relative hidden h-full min-h-[540px] lg:block">
+            <Floaty amplitude={6} duration={7} className="absolute right-0 top-0 w-[316px]">
               <div className="rw-glass rw-topline rounded-2xl p-6">
                 <div className="flex items-center justify-between">
-                  <span className="rw-mono text-[11px] uppercase tracking-[0.2em] text-[var(--rw-orange-2)]">
+                  <span className="rw-mono text-xs uppercase tracking-[0.2em] text-[var(--rw-orange-2)]">
                     Следующий вайп
                   </span>
-                  <Icon name="Clock" size={16} className="text-[var(--rw-faint)]" />
+                  <Icon name="Clock" size={17} className="text-[var(--rw-faint)]" />
                 </div>
                 <div className="mt-4 grid grid-cols-4 gap-2">
                   {[
@@ -192,54 +192,54 @@ export function Hero() {
                     { v: cd.s, l: "сек" },
                   ].map((p) => (
                     <div key={p.l} className="rounded-xl border border-[var(--rw-line)] bg-black/30 py-3 text-center">
-                      <div className="rw-display text-2xl font-semibold tabular-nums text-[var(--rw-text)]">
+                      <div className="rw-display text-[1.7rem] font-semibold tabular-nums leading-none text-[var(--rw-text)]">
                         {pad(p.v)}
                       </div>
-                      <div className="rw-mono mt-0.5 text-[10px] uppercase text-[var(--rw-faint)]">{p.l}</div>
+                      <div className="rw-mono mt-1 text-[11px] uppercase text-[var(--rw-faint)]">{p.l}</div>
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-xs text-[var(--rw-muted)]">Пятница, 16:00 МСК — свежая карта и чертежи для всех.</p>
+                <p className="mt-4 text-[13px] leading-relaxed text-[var(--rw-muted)]">Пятница, 16:00 МСК — свежая карта и чертежи для всех.</p>
               </div>
             </Floaty>
 
-            <Floaty amplitude={6} duration={8} delay={1} className="absolute right-0 top-[322px] w-[284px]">
+            <Floaty amplitude={6} duration={8} delay={1} className="absolute right-0 top-[332px] w-[300px]">
               <div className="rw-glass rounded-2xl p-5">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--rw-chill)]/15 text-[var(--rw-chill)]">
-                    <Icon name="Castle" size={20} />
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--rw-chill)]/15 text-[var(--rw-chill)]">
+                    <Icon name="Castle" size={22} />
                   </span>
                   <div>
-                    <div className="text-sm font-semibold text-[var(--rw-text)]">Битва деревень</div>
-                    <div className="text-xs text-[var(--rw-faint)]">Ивент недели · 10 000 монет</div>
+                    <div className="text-[15px] font-semibold text-[var(--rw-text)]">Битва деревень</div>
+                    <div className="text-[13px] text-[var(--rw-muted)]">Ивент недели · 10 000 монет</div>
                   </div>
                 </div>
               </div>
             </Floaty>
 
-            <Floaty amplitude={6} duration={6.5} delay={0.5} className="absolute right-5 top-[226px] w-[272px]">
+            <Floaty amplitude={6} duration={6.5} delay={0.5} className="absolute right-5 top-[228px] w-[288px]">
               <div className="rw-glass rounded-2xl p-5">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--rw-orange)]/15 text-[var(--rw-amber)]">
-                    <Icon name="Gift" size={20} />
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--rw-orange)]/15 text-[var(--rw-amber)]">
+                    <Icon name="Gift" size={22} />
                   </span>
                   <div>
-                    <div className="text-sm font-semibold text-[var(--rw-text)]">Реальные скины</div>
-                    <div className="text-xs text-[var(--rw-faint)]">Прямо в Steam-инвентарь</div>
+                    <div className="text-[15px] font-semibold text-[var(--rw-text)]">Реальные скины</div>
+                    <div className="text-[13px] text-[var(--rw-muted)]">Прямо в Steam-инвентарь</div>
                   </div>
                 </div>
               </div>
             </Floaty>
 
-            <Floaty amplitude={6} duration={7.5} delay={1.5} className="absolute right-3 top-[418px] w-[288px]">
+            <Floaty amplitude={6} duration={7.5} delay={1.5} className="absolute right-3 top-[436px] w-[304px]">
               <div className="rw-glass rounded-2xl p-5">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--rw-hard)]/15 text-[var(--rw-hard)]">
-                    <Icon name="Target" size={20} />
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--rw-hard)]/15 text-[var(--rw-hard)]">
+                    <Icon name="Skull" size={22} />
                   </span>
                   <div>
-                    <div className="text-sm font-semibold text-[var(--rw-text)]">Баунти турнир</div>
-                    <div className="text-xs text-[var(--rw-faint)]">Охота за головами · PvP-ивент</div>
+                    <div className="text-[15px] font-semibold text-[var(--rw-text)]">Баунти турнир</div>
+                    <div className="text-[13px] text-[var(--rw-muted)]">Охота за головами · PvP-ивент</div>
                   </div>
                 </div>
               </div>
