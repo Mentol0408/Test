@@ -30,7 +30,7 @@ export function FinalCTA() {
         </Reveal>
 
         <Reveal delay={0.06}>
-          <h2 className="rw-display mx-auto mt-7 max-w-4xl text-[clamp(2.75rem,7vw,6rem)] font-bold uppercase leading-[0.9] tracking-tight">
+          <h2 className="rw-display mx-auto mt-7 max-w-4xl text-[clamp(2.75rem,7vw,6rem)] font-black uppercase leading-[0.9] tracking-tight">
             Готов начать свой{" "}
             <span className="rw-gradient-text">путь?</span>
           </h2>

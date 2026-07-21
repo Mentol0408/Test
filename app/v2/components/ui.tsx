@@ -99,7 +99,7 @@ export function SectionHeading({
       <Reveal delay={0.05}>
         <h2
           className={cn(
-            "rw-display text-balance text-4xl font-semibold uppercase leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl",
+            "rw-display text-balance text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-5xl lg:text-6xl",
             align === "center" ? "max-w-3xl" : "max-w-2xl",
           )}
         >

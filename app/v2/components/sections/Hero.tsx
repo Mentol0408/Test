@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/v2/lib/cn";
-import { BRAND, HERO_STATS, PRIMARY_IP, SERVERS } from "@/v2/lib/content";
+import { BRAND, HERO_STATS, SERVERS } from "@/v2/lib/content";
 import { Button, Container, LivePill } from "../ui";
 import { Icon } from "../icons";
-import { CountUp, Floaty, Magnetic, useCopy } from "../motion";
+import { CountUp, Floaty, Magnetic } from "../motion";
 import { Embers, EmberStream, LightBeams } from "../Effects";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -48,7 +47,6 @@ function pad(n: number) {
 }
 
 export function Hero() {
-  const { copied, copy } = useCopy();
   const cd = useCountdown();
   const totalOnline = SERVERS.reduce((t, s) => t + (s.online ?? 0), 0);
 
@@ -123,7 +121,7 @@ export function Hero() {
               </span>
             </motion.div>
 
-            <h1 className="rw-display mt-6 text-[clamp(3rem,9vw,7.5rem)] font-bold uppercase leading-[0.86] tracking-[-0.01em]">
+            <h1 className="rw-display mt-6 text-[clamp(2.75rem,9vw,7.5rem)] font-black uppercase leading-[0.86] tracking-[-0.02em]">
               {["ТВОЙ ПУТЬ", "В"].map((line, i) => (
                 <motion.span
                   key={line}
@@ -147,11 +145,11 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.35, ease: EASE }}
-              className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-[var(--rw-muted)] sm:text-lg"
+              className="mt-5 max-w-lg text-pretty text-[15px] leading-relaxed text-[var(--rw-muted)] sm:mt-6 sm:text-lg"
             >
-              {BRAND.name} — комплекс премиальных серверов. Кастомные плагины, честная
-              экономика, реальные Steam-скины и еженедельные ивенты с призовым фондом{" "}
-              <span className="font-semibold text-[var(--rw-text)]">10 000 ₽</span>. Выбери свой стиль игры.
+              {BRAND.name} — премиальные серверы: кастомные плагины, честная экономика и реальные Steam-скины.
+              <span className="hidden sm:inline"> Еженедельные ивенты с призовым фондом{" "}
+                <span className="font-semibold text-[var(--rw-text)]">10 000 ₽</span>. Выбери свой стиль игры.</span>
             </motion.p>
 
             {/* CTAs */}
@@ -171,31 +169,6 @@ export function Hero() {
                 <Icon name="Play" size={16} />
                 Смотреть трейлер
               </Button>
-            </motion.div>
-
-            {/* Copy IP */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
-              className="mt-5"
-            >
-              <button
-                onClick={() => copy(PRIMARY_IP)}
-                className="group inline-flex max-w-full flex-wrap items-center gap-x-3 gap-y-2 rounded-xl border border-[var(--rw-line-2)] bg-white/[0.03] px-3 py-2 transition-colors hover:border-[var(--rw-orange)]/40 sm:pl-4 sm:pr-2"
-              >
-                <span className="rw-mono text-xs text-[var(--rw-faint)]">connect</span>
-                <span className="rw-mono text-sm text-[var(--rw-text)]">{PRIMARY_IP}</span>
-                <span
-                  className={cn(
-                    "inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors",
-                    copied ? "bg-emerald-400/15 text-emerald-300" : "bg-white/5 text-[var(--rw-muted)] group-hover:bg-white/10",
-                  )}
-                >
-                  <Icon name={copied ? "Check" : "Copy"} size={13} />
-                  {copied ? "Скопировано" : "Копировать IP"}
-                </span>
-              </button>
             </motion.div>
 
             {/* Stats row */}

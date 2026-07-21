@@ -73,16 +73,6 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
         />
         <span aria-hidden className="absolute left-0 top-0 h-full w-1.5 rounded-r" style={{ background: `linear-gradient(180deg, ${accent}, color-mix(in srgb, ${accent} 40%, transparent))` }} />
 
-        {/* Featured ribbon */}
-        {server.featured && (
-          <span
-            className="absolute right-5 top-5 z-20 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide"
-            style={{ color: accent, background: `color-mix(in srgb, ${accent} 14%, transparent)`, border: `1px solid color-mix(in srgb, ${accent} 40%, transparent)` }}
-          >
-            <Icon name="Flame" size={12} /> Хит выбора
-          </span>
-        )}
-
         <div className="relative grid gap-5 lg:grid-cols-[1.62fr_1fr]">
           {/* ============ LEFT ============ */}
           <div className="flex min-w-0 flex-col gap-5">
@@ -106,6 +96,14 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
                   >
                     {server.rate}
                   </span>
+                  {server.featured && (
+                    <span
+                      className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide"
+                      style={{ color: accent, background: `color-mix(in srgb, ${accent} 14%, transparent)`, border: `1px solid color-mix(in srgb, ${accent} 40%, transparent)` }}
+                    >
+                      <Icon name="Flame" size={11} /> Хит выбора
+                    </span>
+                  )}
                 </div>
                 <p className="rw-mono mt-2 text-xs uppercase tracking-[0.16em] text-[var(--rw-faint)]">{server.subtitle}</p>
               </div>
@@ -155,7 +153,7 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
           </div>
 
           {/* ============ RIGHT ============ */}
-          <div className="flex flex-col justify-end gap-4">
+          <div className="flex flex-col justify-between gap-4">
             {/* Online box */}
             <div className="rounded-2xl border border-[var(--rw-line)] bg-black/25 p-4">
               {maintenance ? (
@@ -186,39 +184,41 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
               </div>
             </div>
 
-            {/* Connect */}
-            {maintenance ? (
-              <button
-                aria-disabled
-                className="inline-flex h-14 cursor-not-allowed items-center justify-center gap-2 rounded-2xl border border-[var(--rw-line)] bg-white/[0.02] font-semibold text-[var(--rw-faint)]"
-              >
-                <Icon name="Clock" size={17} /> Скоро вернёмся
-              </button>
-            ) : (
-              <a
-                href={server.connect}
-                className="group/btn relative inline-flex h-14 items-center justify-center gap-2 overflow-hidden rounded-2xl font-bold text-white transition-transform duration-300 hover:-translate-y-0.5"
-                style={{ background: btnGrad, boxShadow: `0 12px 30px -10px color-mix(in srgb, ${accent} 70%, transparent)` }}
-              >
-                <Icon name="Play" size={17} /> Подключиться
-              </a>
-            )}
-
-            <button
-              onClick={() => copy(server.ip)}
-              className={cn(
-                "flex items-center justify-between gap-2 rounded-2xl border px-4 py-3 text-left transition-colors",
-                copied ? "border-emerald-400/40 bg-emerald-400/10" : "border-[var(--rw-line-2)] bg-black/25 hover:border-[var(--rw-line-3)]",
+            {/* Connect + copy (anchored to the bottom, aligned with the features panel) */}
+            <div className="flex flex-col gap-4">
+              {maintenance ? (
+                <button
+                  aria-disabled
+                  className="inline-flex h-14 cursor-not-allowed items-center justify-center gap-2 rounded-2xl border border-[var(--rw-line)] bg-white/[0.02] font-semibold text-[var(--rw-faint)]"
+                >
+                  <Icon name="Clock" size={17} /> Скоро вернёмся
+                </button>
+              ) : (
+                <a
+                  href={server.connect}
+                  className="group/btn relative inline-flex h-14 items-center justify-center gap-2 overflow-hidden rounded-2xl font-bold text-white transition-transform duration-300 hover:-translate-y-0.5"
+                  style={{ background: btnGrad, boxShadow: `0 12px 30px -10px color-mix(in srgb, ${accent} 70%, transparent)` }}
+                >
+                  <Icon name="Play" size={17} /> Подключиться
+                </a>
               )}
-            >
-              <span className="min-w-0">
-                <span className="rw-mono block text-[10px] uppercase tracking-[0.16em] text-[var(--rw-faint)]">
-                  {copied ? "Скопировано" : "Копировать connect"}
+
+              <button
+                onClick={() => copy(server.ip)}
+                className={cn(
+                  "flex items-center justify-between gap-2 rounded-2xl border px-4 py-3 text-left transition-colors",
+                  copied ? "border-emerald-400/40 bg-emerald-400/10" : "border-[var(--rw-line-2)] bg-black/25 hover:border-[var(--rw-line-3)]",
+                )}
+              >
+                <span className="min-w-0">
+                  <span className="rw-mono block text-[10px] uppercase tracking-[0.16em] text-[var(--rw-faint)]">
+                    {copied ? "Скопировано" : "Копировать connect"}
+                  </span>
+                  <span className="rw-mono block truncate text-xs text-[var(--rw-text)]">connect {server.ip}</span>
                 </span>
-                <span className="rw-mono block truncate text-xs text-[var(--rw-text)]">connect {server.ip}</span>
-              </span>
-              <Icon name={copied ? "Check" : "Copy"} size={16} className={copied ? "text-emerald-300" : "text-[var(--rw-muted)]"} />
-            </button>
+                <Icon name={copied ? "Check" : "Copy"} size={16} className={copied ? "text-emerald-300" : "text-[var(--rw-muted)]"} />
+              </button>
+            </div>
           </div>
         </div>
       </article>
