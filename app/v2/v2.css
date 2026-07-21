@@ -354,7 +354,7 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
 /* ---- God-ray light beams ---- */
 .rw-beam {
   position: absolute;
-  background: linear-gradient(180deg, rgba(255, 156, 66, 0.3), transparent 72%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 72%);
   filter: blur(22px);
   will-change: transform, opacity;
   animation: rw-beam-sway 13s ease-in-out infinite;
