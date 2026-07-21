@@ -109,8 +109,8 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
               </div>
             </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
+            {/* Tags — desktop only, mobile stays compact */}
+            <div className="hidden flex-wrap gap-2 lg:flex">
               {server.tags.map((t) => (
                 <Badge key={t.label} tone={t.tone} className="rw-mono uppercase tracking-wider">
                   {t.label}
@@ -121,16 +121,16 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
             {/* Description */}
             <p className="max-w-xl text-pretty text-[15px] leading-relaxed text-[var(--rw-muted)]">{server.description}</p>
 
-            {/* Stat cells */}
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {/* Stat cells — desktop only */}
+            <div className="hidden gap-3 lg:grid lg:grid-cols-4">
               <StatCell icon="Skull" label="Сложность" value={server.difficulty} note={server.difficultyNote} accent={accent} />
               <StatCell icon="Signal" label="Пинг" value={`${server.ping} ms`} note={pingNote(server.ping)} accent={accent} />
               <StatCell icon="Map" label="Размер карты" value={String(server.mapSize)} note={mapNote(server.mapSize)} accent={accent} />
               <StatCell icon="Users" label="Лимит команды" value={String(server.teamLimit)} note="Игроков в команде" accent={accent} />
             </div>
 
-            {/* Features panel */}
-            <div className="rounded-2xl border border-[var(--rw-line)] bg-black/20 p-4 sm:p-5">
+            {/* Features panel — desktop only */}
+            <div className="hidden rounded-2xl border border-[var(--rw-line)] bg-black/20 p-4 sm:p-5 lg:block">
               <div className="mb-4 flex items-center gap-2">
                 <Icon name="Star" size={15} style={{ color: accent }} />
                 <span className="rw-mono text-[11px] uppercase tracking-[0.18em] text-[var(--rw-faint)]">Особенности сервера</span>
@@ -218,6 +218,22 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
                 </span>
                 <Icon name={copied ? "Check" : "Copy"} size={16} className={copied ? "text-emerald-300" : "text-[var(--rw-muted)]"} />
               </button>
+
+              {/* Compact stats — mobile only, like the classic card */}
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 rounded-2xl border border-[var(--rw-line)] bg-black/25 p-4 lg:hidden">
+                {[
+                  { icon: "Skull", label: "Сложность", value: server.difficulty },
+                  { icon: "Map", label: "Карта", value: String(server.mapSize) },
+                  { icon: "Users", label: "Лимит", value: String(server.teamLimit) },
+                  { icon: "Signal", label: "Пинг", value: `${server.ping} ms` },
+                ].map((s) => (
+                  <div key={s.label} className="flex items-center gap-2 text-[13px]">
+                    <Icon name={s.icon} size={14} style={{ color: accent }} />
+                    <span className="text-[var(--rw-faint)]">{s.label}:</span>
+                    <span className="font-semibold text-[var(--rw-text)]">{s.value}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
