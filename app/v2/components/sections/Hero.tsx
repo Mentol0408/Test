@@ -80,24 +80,9 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 -z-30"
         style={{ background: "radial-gradient(130% 100% at 50% 45%, transparent 58%, rgba(12,8,5,0.55) 100%)" }}
       />
-      {/* Subtle warm wash */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-20"
-        style={{ background: "linear-gradient(120deg, rgba(255,120,50,0.12), transparent 50%)" }}
-      />
-
       {/* Atmospheric effects filling the empty space */}
-      <div className="rw-aurora -z-20 opacity-70" />
       <LightBeams className="-z-20" />
       <div className="rw-grid absolute inset-0 -z-20 opacity-70" />
-      <div
-        className="pointer-events-none absolute left-[-6%] top-1/4 -z-20 h-[500px] w-[660px] rounded-full blur-2xl"
-        style={{ background: "radial-gradient(circle, rgba(255,106,26,0.24), transparent 66%)" }}
-      />
-      <div
-        className="pointer-events-none absolute right-[2%] top-[6%] -z-20 h-[460px] w-[520px] rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(255,72,30,0.26), transparent 66%)" }}
-      />
       <Embers count={34} className="-z-10" />
       {/* Sparks streaming from the campfire on the rock (right side of the shot) */}
       <EmberStream x={86.5} y={66} count={24} className="-z-10 hidden lg:block" />
