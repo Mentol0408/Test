@@ -100,7 +100,7 @@ export function Hero() {
       />
       <Embers count={34} className="-z-10" />
       {/* Sparks streaming from the campfire on the rock (right side of the shot) */}
-      <EmberStream x={92} y={66} count={24} className="-z-10 hidden lg:block" />
+      <EmberStream x={93} y={66} count={24} className="-z-10 hidden lg:block" />
       <div className="absolute inset-0 -z-10 rw-noise opacity-[0.05]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-[var(--rw-bg)] to-transparent" />
 
