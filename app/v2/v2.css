@@ -77,6 +77,24 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
   color: transparent;
 }
 
+/* Animated rainbow shimmer text (Hall of Fame — like the classic site) */
+.rw-rainbow {
+  background-image: linear-gradient(
+    90deg,
+    #ff5f6d, #ffb454, #ffe14a, #a6d24a, #4ade80, #38bdf8, #a78bfa, #e878ff, #ff5f6d
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: rw-rainbow-shift 4s linear infinite;
+}
+@keyframes rw-rainbow-shift {
+  0% { background-position: 0% center; }
+  100% { background-position: -200% center; }
+}
+
 /* Glass panel — layered: inner top light + soft ambient drop shadow */
 .rw-glass {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));

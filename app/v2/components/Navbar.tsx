@@ -166,10 +166,11 @@ export function Navbar() {
             ))}
             <button
               onClick={() => setHofOpen(true)}
-              className="group ml-1 flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium text-[var(--rw-amber)] transition-colors hover:text-[var(--rw-orange-2)]"
+              className="group relative ml-1 flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium"
             >
-              <Icon name="Trophy" size={15} />
-              Зал славы
+              <Icon name="Trophy" size={15} className="text-[var(--rw-amber)]" />
+              <span className="rw-rainbow">Зал славы</span>
+              <span className="absolute inset-x-3.5 -bottom-px h-px origin-left scale-x-0 bg-gradient-to-r from-[var(--rw-orange)] to-transparent transition-transform duration-300 group-hover:scale-x-100" />
             </button>
           </nav>
 
@@ -321,9 +322,9 @@ export function Navbar() {
                 initial={{ x: -16, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.05 * NAV.length }}
-                className="rw-display flex items-center justify-between border-b border-[var(--rw-line)] py-4 text-2xl font-semibold uppercase tracking-wide text-[var(--rw-amber)]"
+                className="rw-display flex items-center justify-between border-b border-[var(--rw-line)] py-4 text-2xl font-semibold uppercase tracking-wide"
               >
-                Зал славы
+                <span className="rw-rainbow">Зал славы</span>
                 <Icon name="Trophy" size={20} className="text-[var(--rw-orange)]" />
               </motion.button>
               <div className="mt-6 flex flex-col gap-3">
