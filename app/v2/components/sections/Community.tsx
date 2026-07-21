@@ -44,7 +44,7 @@ export function Community() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${DISCORD.name} — ${DISCORD.handle}`}
-              className="rw-glass rw-topline group relative flex h-full min-h-[320px] flex-col overflow-hidden rounded-2xl p-7 outline-none transition-all duration-500 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-[var(--rw-orange)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--rw-bg)] sm:p-9 lg:p-10"
+              className="rw-glass rw-topline group relative flex h-full min-h-[320px] flex-col overflow-hidden rounded-2xl p-7 transition-all duration-500 hover:-translate-y-1 sm:p-9 lg:p-10"
             >
               {/* Radial glow on hover */}
               <div
@@ -130,7 +130,7 @@ export function Community() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${item.name} — ${item.handle}`}
-                className="rw-glass rw-topline group relative flex h-full min-h-[196px] flex-col justify-between overflow-hidden rounded-2xl p-6 outline-none transition-all duration-500 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-[var(--rw-orange)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--rw-bg)]"
+                className="rw-glass rw-topline group relative flex h-full min-h-[196px] flex-col justify-between overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:-translate-y-1"
               >
                 {/* Radial glow on hover */}
                 <div

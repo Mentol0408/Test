@@ -13,7 +13,7 @@ const ITEMS = [
 export function Marquee() {
   const row = [...ITEMS, ...ITEMS]; // duplicated for the seamless -50% loop
   return (
-    <div aria-hidden className="relative overflow-hidden border-y border-[var(--rw-line)] bg-black/20 py-3.5">
+    <div aria-hidden className="rw-marquee-fade relative overflow-hidden border-y border-[var(--rw-line)] bg-black/20 py-3.5">
       <div className="rw-marquee-track">
         {row.map((item, i) => (
           <span key={i} className="rw-mono flex items-center gap-8 whitespace-nowrap pr-8 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--rw-muted)]">

@@ -67,7 +67,7 @@ export function Gallery() {
               key={shot.src}
               onClick={() => setOpen(i)}
               aria-label={`Открыть: ${shot.title}`}
-              className={`group relative aspect-[4/3] overflow-hidden rounded-2xl border border-[var(--rw-line)] outline-none focus-visible:ring-2 focus-visible:ring-[var(--rw-orange)] ${i === 5 ? "col-span-2" : ""} ${SPAN[i] ?? ""}`}
+              className={`group relative aspect-[4/3] overflow-hidden rounded-2xl border border-[var(--rw-line)] transition-colors duration-500 hover:border-[var(--rw-line-3)] ${i === 5 ? "col-span-2" : ""} ${SPAN[i] ?? ""}`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

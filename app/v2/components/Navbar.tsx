@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { cn } from "@/v2/lib/cn";
 import { NAV, SOCIALS } from "@/v2/lib/content";
 import { Logo } from "./Logo";
@@ -19,6 +19,8 @@ const SOCIAL_ORDER = [
 ] as const;
 
 export function Navbar() {
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.3 });
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
@@ -116,6 +118,12 @@ export function Navbar() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="fixed inset-x-0 top-0 z-50"
       >
+        {/* Scroll progress hairline */}
+        <motion.span
+          aria-hidden
+          style={{ scaleX: progress }}
+          className="absolute inset-x-0 top-0 z-10 h-[2px] origin-left bg-[image:var(--rw-grad)] opacity-80"
+        />
         <div
           className={cn(
             "mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 transition-all duration-500 sm:px-8 lg:h-[72px]",
@@ -175,7 +183,7 @@ export function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.name}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--rw-faint)] transition-all hover:bg-white/5 hover:text-[var(--rw-text)]"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--rw-faint)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/5 hover:text-[var(--rw-text)]"
                 >
                   <BrandIcon name={s.name} size={18} />
                 </a>
@@ -203,8 +211,14 @@ export function Navbar() {
                   <Icon name="ChevronDown" size={14} className="text-[var(--rw-muted)]" />
                 </button>
 
+                <AnimatePresence>
                 {userMenu && (
-                  <div className="absolute right-0 top-[calc(100%+8px)] w-60 overflow-hidden rounded-2xl border border-[var(--rw-line-2)] bg-[var(--rw-bg-2)] p-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]">
+                  <motion.div
+                    initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute right-0 top-[calc(100%+8px)] w-60 origin-top-right overflow-hidden rounded-2xl border border-[var(--rw-line-2)] bg-[var(--rw-bg-2)] p-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]">
                     <div className="border-b border-[var(--rw-line)] px-3 pb-3 pt-2">
                       <span className="rw-mono block text-[10px] uppercase tracking-[0.18em] text-[var(--rw-faint)]">Баланс</span>
                       <strong className="rw-display text-2xl font-black text-[var(--rw-amber)]">{balance} RW</strong>
@@ -232,8 +246,9 @@ export function Navbar() {
                     >
                       <Icon name="ArrowUpRight" size={15} /> Выйти
                     </button>
-                  </div>
+                  </motion.div>
                 )}
+                </AnimatePresence>
               </div>
             ) : (
               <Button
@@ -316,7 +331,12 @@ export function Navbar() {
                   <Icon name="Play" size={18} />
                   Играть сейчас
                 </Button>
-                <Button href="#" variant="ghost" size="lg" onClick={() => setOpen(false)}>
+                <Button
+                  href={`/api/steam/login?returnTo=${encodeURIComponent(returnTo)}`}
+                  variant="ghost"
+                  size="lg"
+                  onClick={() => setOpen(false)}
+                >
                   <BrandIcon name="steam" size={18} />
                   Войти через Steam
                 </Button>

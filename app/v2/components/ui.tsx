@@ -125,7 +125,7 @@ export function SectionHeading({
 /* -------------------------------------------------- Button */
 
 const button = cva(
-  "relative inline-flex items-center justify-center gap-2 rounded-xl font-medium tracking-tight transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-[var(--rw-orange)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--rw-bg)] disabled:opacity-50 disabled:pointer-events-none select-none whitespace-nowrap",
+  "relative inline-flex items-center justify-center gap-2 rounded-xl font-medium tracking-tight transition-all duration-300 active:scale-[0.985] disabled:opacity-50 disabled:pointer-events-none select-none whitespace-nowrap",
   {
     variants: {
       variant: {
@@ -177,7 +177,7 @@ export const Button = forwardRef<
 /* -------------------------------------------------- Badge / Chip */
 
 const badge = cva(
-  "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium tracking-tight",
+  "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium tracking-tight transition-colors duration-300",
   {
     variants: {
       tone: {

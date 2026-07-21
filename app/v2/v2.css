@@ -38,6 +38,14 @@
   --rw-grad: linear-gradient(115deg, #ffb454 0%, #ff8a3d 48%, #e2543a 100%);
   --rw-grad-soft: linear-gradient(135deg, rgba(255, 180, 84, 0.16), rgba(226, 84, 58, 0.16));
   --rw-glow: 0 0 0 1px rgba(255, 138, 61, 0.22), 0 18px 60px -12px rgba(226, 84, 58, 0.5);
+
+  /* ---- Motion ---- */
+  --rw-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smooth anchor scrolling (opt-out for reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 .rw-root {
@@ -69,13 +77,32 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
   color: transparent;
 }
 
-/* Glass panel */
+/* Glass panel — layered: inner top light + soft ambient drop shadow */
 .rw-glass {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid var(--rw-line);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 24px 48px -28px rgba(0, 0, 0, 0.55);
 }
+
+/* Consistent brand focus ring for every interactive element */
+.rw-root :focus-visible {
+  outline: 2px solid rgba(255, 138, 61, 0.75);
+  outline-offset: 3px;
+}
+
+/* Animated gradient underline for inline links */
+.rw-link {
+  background-image: linear-gradient(90deg, var(--rw-orange), var(--rw-amber));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s var(--rw-ease), color 0.3s;
+}
+.rw-link:hover { background-size: 100% 1px; }
 
 /* Hairline top highlight used on premium cards */
 .rw-topline { position: relative; }
@@ -152,12 +179,19 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
   transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .rw-btn-primary:hover::after { transform: translateX(120%); }
+.rw-btn-primary:hover {
+  box-shadow: 0 16px 44px -10px rgba(255, 120, 55, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.rw-btn-primary:active {
+  box-shadow: 0 6px 18px -6px rgba(255, 120, 55, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
 
 /* Ghost / outline button */
 .rw-btn-ghost {
   border: 1px solid var(--rw-line-2);
   background: rgba(255, 255, 255, 0.02);
   color: var(--rw-text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   transition: border-color 0.3s, background 0.3s, transform 0.3s;
 }
 .rw-btn-ghost:hover {
@@ -249,6 +283,12 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
   animation: rw-marquee 32s linear infinite;
 }
 .rw-marquee-track:hover { animation-play-state: paused; }
+
+/* Soft edge fade so the marquee dissolves instead of clipping */
+.rw-marquee-fade {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
 
 /* ---- Floating embers (glowing sparks distributed across the hero) ---- */
 .rw-ember {

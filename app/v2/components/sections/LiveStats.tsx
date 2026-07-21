@@ -43,7 +43,7 @@ export function LiveStats() {
               <StaggerItem key={s.label} className="h-full">
                 <div
                   className={cn(
-                    "group relative flex h-full flex-col overflow-hidden rounded-2xl rw-glass rw-topline p-6 transition-all duration-300 hover:-translate-y-1",
+                    "group relative flex h-full flex-col overflow-hidden rounded-2xl rw-glass rw-topline p-6 transition-all duration-500 hover:-translate-y-1",
                     featured
                       ? "border-emerald-400/25 hover:border-emerald-400/45"
                       : "hover:border-[var(--rw-orange)]/40",

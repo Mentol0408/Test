@@ -26,7 +26,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={c.name}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--rw-line)] bg-white/[0.02] text-[var(--rw-muted)] transition-all hover:border-[var(--rw-orange)]/40 hover:text-[var(--rw-text)]"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--rw-line)] bg-white/[0.02] text-[var(--rw-muted)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--rw-orange)]/40 hover:text-[var(--rw-text)]"
                 >
                   <BrandIcon name={c.icon} size={18} />
                 </a>
@@ -40,7 +40,7 @@ export function Footer() {
             <ul className="mt-5 space-y-3">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <a href={n.href} className="text-sm text-[var(--rw-muted)] transition-colors hover:text-[var(--rw-text)]">
+                  <a href={n.href} className="rw-link text-sm text-[var(--rw-muted)] hover:text-[var(--rw-text)]">
                     {n.label}
                   </a>
                 </li>
