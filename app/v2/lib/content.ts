@@ -180,47 +180,37 @@ export const HERO_STATS = [
 
 export interface Reason {
   id: string;
+  eyebrow: string; // small uppercase label
   title: string;
   text: string;
-  icon: string; // lucide icon name
+  image: string;
+  href: string;
 }
 
 export const REASONS: Reason[] = [
   {
-    id: "plugins",
-    title: "Уникальные плагины",
-    text: "Стандартные механики заменены кастомными: дрон-маркет, случайные чертежи, лидерборд — каждый аспект глубже и честнее.",
-    icon: "Puzzle",
-  },
-  {
-    id: "anticheat",
-    title: "Античит и проверки",
-    text: "Серверный анти-чит плюс ручные проверки модераторами через Discord. Побеждает мастерство, а не софт.",
-    icon: "ShieldCheck",
-  },
-  {
-    id: "fps",
-    title: "Стабильные FPS",
-    text: "Оптимизированные сборки и мощное железо: высокий и ровный FPS даже в замесах на 200 игроков.",
-    icon: "Gauge",
-  },
-  {
-    id: "support",
-    title: "Быстрая поддержка",
-    text: "Система тикетов и живая команда. Отвечаем оперативно и решаем вопросы, а не отписываемся шаблонами.",
-    icon: "Headset",
-  },
-  {
-    id: "events",
-    title: "Кастомные ивенты",
-    text: "«Битва деревень 3.0» и еженедельные события с рейтингом и призовым фондом 10 000 ₽. Каждый вайп — новая история.",
-    icon: "Swords",
-  },
-  {
     id: "economy",
-    title: "Живая экономика",
-    text: "Монеты за активность, фарм, лут и PvP. Валюта магазина, кейсы с реальными скинами и награды x2 для VIP.",
-    icon: "Coins",
+    eyebrow: "Донат и экономика",
+    title: "Монеты за каждое действие",
+    text: "Получайте монеты за активность, фарм, лут и сражения. Монеты — основная валюта магазина: их можно тратить на предметы, ресурсы и развитие.",
+    image: "/3.png",
+    href: "/store",
+  },
+  {
+    id: "cases",
+    eyebrow: "Кейсы со скинами",
+    title: "Реальные Steam-скины",
+    text: "Открывайте кейсы с реальными скинами. Выигранные предметы приходят прямо в инвентарь Steam.",
+    image: "/2.png",
+    href: "/cases",
+  },
+  {
+    id: "plugins",
+    eyebrow: "Уникальные плагины",
+    title: "Кастомные механики",
+    text: "Мы заменили стандартные решения на кастомные, которые делают каждый аспект игры — от фарма до рейдов — более глубоким, честным и увлекательным.",
+    image: "/1.png",
+    href: "#features",
   },
 ];
 
@@ -252,7 +242,7 @@ export const PLUGINS: PluginFeature[] = [
     title: "Рандомные чертежи",
     subtitle: "Изучение рецептов за 60 скрапа у верстака. Честный рандом вместо предсказуемой ветки.",
     servers: ["Hard"],
-    image: "/1.png",
+    image: "/mode-solo.jpg",
     size: "md",
     icon: "Dices",
   },
@@ -270,7 +260,7 @@ export const PLUGINS: PluginFeature[] = [
     title: "Лидерборд игроков",
     subtitle: "Личный рейтинг за онлайн, убийства и фарм. Лучшие получают монеты и статус в топе.",
     servers: ["Hard", "Chill"],
-    image: "/3.png",
+    image: "/stats-preview.jpg",
     size: "sm",
     icon: "Trophy",
   },
@@ -279,7 +269,7 @@ export const PLUGINS: PluginFeature[] = [
     title: "Кейсы со скинами",
     subtitle: "Открывай кейсы за монеты и получай настоящие Steam-скины прямо в свой инвентарь.",
     servers: ["Hard", "Chill"],
-    image: "/2.png",
+    image: "/cases-interface.png",
     size: "sm",
     icon: "Gift",
   },

@@ -2,8 +2,8 @@
 
 /* =====================================================================
    WhyRustWay — "Почему стоит играть у нас"
-   Premium reasons grid: staggered glass cards with hover lift, brightening
-   hairline, molten corner glow, animated accent line and index numbers.
+   Premium image cards: cinematic art on top, eyebrow + title + body and a
+   "Подробнее" link. Hover lift, brightening hairline and image zoom.
    ===================================================================== */
 
 import { REASONS } from "@/v2/lib/content";
@@ -15,6 +15,8 @@ export function WhyRustWay() {
   return (
     <Section id="advantages">
       <SectionHeading
+        align="center"
+        className="mx-auto"
         eyebrow="Почему мы"
         title={
           <>
@@ -25,43 +27,44 @@ export function WhyRustWay() {
       />
 
       <Stagger className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:mt-16">
-        {REASONS.map((r, i) => (
+        {REASONS.map((r) => (
           <StaggerItem key={r.id} className="group h-full">
-            <article
-              className="relative flex h-full flex-col overflow-hidden rounded-2xl rw-glass rw-topline p-7 transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[var(--rw-line-3)] hover:shadow-[0_24px_70px_-24px_rgba(255,106,26,0.5)]"
+            <a
+              href={r.href}
+              className="relative flex h-full flex-col overflow-hidden rounded-2xl rw-glass rw-topline transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[var(--rw-line-3)] hover:shadow-[0_24px_70px_-24px_rgba(255,106,26,0.5)]"
             >
-              {/* Molten corner glow revealed on hover */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(255,106,26,0.28),transparent_68%)] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-              />
-
-              {/* Index number */}
-              <span className="rw-mono absolute right-6 top-6 text-xs tracking-[0.22em] text-[var(--rw-faint)] transition-colors duration-500 group-hover:text-[var(--rw-orange-2)]">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-
-              {/* Icon tile */}
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-[var(--rw-orange)]/25 bg-[var(--rw-orange)]/10 text-[var(--rw-amber)] transition-all duration-500 group-hover:-translate-y-0.5 group-hover:border-[var(--rw-orange)]/50 group-hover:bg-[var(--rw-orange)]/[0.16]">
-                <Icon name={r.icon} size={22} />
+              {/* Cinematic art */}
+              <div className="relative aspect-[16/10] overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={r.image}
+                  alt={r.title}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[var(--rw-panel)] via-[var(--rw-panel)]/10 to-transparent" />
               </div>
 
-              {/* Title */}
-              <h3 className="rw-display mt-6 text-xl font-semibold uppercase tracking-wide text-[var(--rw-text)]">
-                {r.title}
-              </h3>
-
-              {/* Accent line — grows on hover */}
-              <span
-                aria-hidden
-                className="mt-3 block h-px w-8 rounded-full bg-gradient-to-r from-[var(--rw-orange)] to-[var(--rw-ember)] transition-all duration-500 ease-out group-hover:w-16"
-              />
-
               {/* Body */}
-              <p className="mt-4 text-[15px] leading-relaxed text-[var(--rw-muted)]">
-                {r.text}
-              </p>
-            </article>
+              <div className="flex flex-1 flex-col p-6">
+                <span className="rw-mono text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--rw-orange-2)]">
+                  {r.eyebrow}
+                </span>
+                <h3 className="rw-display mt-2 text-xl font-semibold uppercase tracking-wide text-[var(--rw-text)]">
+                  {r.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-[var(--rw-muted)]">
+                  {r.text}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--rw-orange-2)] transition-colors group-hover:text-[var(--rw-amber)]">
+                  Подробнее
+                  <Icon
+                    name="ArrowUpRight"
+                    size={15}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </span>
+              </div>
+            </a>
           </StaggerItem>
         ))}
       </Stagger>
