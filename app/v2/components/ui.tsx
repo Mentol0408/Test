@@ -186,6 +186,7 @@ const badge = cva(
         chill: "border border-[var(--rw-chill)]/30 bg-[var(--rw-chill)]/10 text-[var(--rw-chill)]",
         hard: "border border-[var(--rw-hard)]/30 bg-[var(--rw-hard)]/10 text-[var(--rw-hard)]",
         vanilla: "border border-[var(--rw-vanilla)]/30 bg-[var(--rw-vanilla)]/10 text-[var(--rw-vanilla)]",
+        media: "border border-[var(--rw-media)]/30 bg-[var(--rw-media)]/10 text-[var(--rw-media)]",
         live: "border border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
       },
     },

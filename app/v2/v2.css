@@ -33,6 +33,7 @@
   --rw-chill: #e878ff;
   --rw-hard: #ff7a4a;
   --rw-vanilla: #a6d24a;
+  --rw-media: #3f9bff;
 
   /* ---- Signature gradients (warm, not neon) ---- */
   --rw-grad: linear-gradient(115deg, #ffb454 0%, #ff8a3d 48%, #e2543a 100%);

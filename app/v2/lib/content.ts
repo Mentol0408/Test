@@ -32,7 +32,7 @@ export const NAV = [
 
 /* ---------------------------------------------------------------- Servers */
 
-export type ServerAccent = "chill" | "hard" | "vanilla";
+export type ServerAccent = "chill" | "hard" | "vanilla" | "media";
 
 export interface ServerData {
   key: ServerAccent;
@@ -53,7 +53,7 @@ export interface ServerData {
   image: string; // right-side cinematic art (swap for per-server character render)
   subtitle: string; // "Война деревень · MMORPG · Rust"
   difficultyNote: string; // sub-label under difficulty
-  tags: { label: string; tone: "chill" | "hard" | "vanilla" | "amber" }[];
+  tags: { label: string; tone: "chill" | "hard" | "vanilla" | "amber" | "media" }[];
   features: { icon: string; title: string; subtitle: string }[];
   featured?: boolean;
   maintenance?: boolean;
@@ -129,39 +129,38 @@ export const SERVERS: ServerData[] = [
     ],
   },
   {
-    key: "vanilla",
-    name: "VANILLA",
-    tag: "Классика · x1",
-    rate: "x1",
-    difficulty: "Оригинал",
+    key: "media",
+    name: "MEDIA",
+    tag: "Медиа · x2",
+    rate: "x2",
+    difficulty: "Комфортно",
     description:
-      "Для тех, кто ценит оригинальность и хочет познать игру такой, какой её задумали разработчики. Чистый ванильный опыт без модификаторов.",
-    ip: "185.189.255.248:35000",
-    connect: "steam://rungameid/252490//+connect 185.189.255.248:35000",
-    mapSize: 4000,
-    teamLimit: 8,
+      "Главный медийный сервер проекта. Стримеры, ролики, трансляции и яркие игровые моменты. Попади в кадр, встреться с любимыми авторами или заяви о себе.",
+    // TODO: подставить реальный IP медиа-сервера (на скрине скрыт: 185.20…)
+    ip: "185.207.214.212:35000",
+    connect: "steam://rungameid/252490//+connect 185.207.214.212:35000",
+    mapSize: 3800,
+    teamLimit: 100,
     wipe: "Пятница · 16:00 МСК",
-    online: null,
+    online: 12,
     capacity: 200,
-    ping: 21,
-    logo: "/vanillaway-logo.png",
-    image: "/banner.jpg",
-    subtitle: "Классика · x1 · Rust",
-    difficultyNote: "Классический опыт",
+    ping: 20,
+    logo: "/media.jfif",
+    image: "/media.jfif",
+    subtitle: "Медиа · Стримы · Rust",
+    difficultyNote: "Комфортная игра",
     tags: [
-      { label: "VANILLA", tone: "vanilla" },
-      { label: "x1", tone: "amber" },
-      { label: "КЛАССИКА", tone: "hard" },
+      { label: "МЕДИА", tone: "media" },
+      { label: "x2", tone: "amber" },
+      { label: "СТРИМЫ", tone: "chill" },
     ],
     features: [
-      { icon: "Sparkles", title: "Оригинальные рейты", subtitle: "Как задумано" },
-      { icon: "ShieldCheck", title: "Чистый Rust", subtitle: "Без модов" },
-      { icon: "Clock", title: "Ностальгия", subtitle: "Классический вайп" },
-      { icon: "Users", title: "Честный старт", subtitle: "Равные условия" },
+      { icon: "Play", title: "Стримы и ролики", subtitle: "Контент 24/7" },
+      { icon: "Users", title: "Любимые авторы", subtitle: "Играй вместе" },
+      { icon: "Sparkles", title: "Комфортные рейты", subtitle: "x2 без гринда" },
+      { icon: "Eye", title: "Попади в кадр", subtitle: "Яркие моменты" },
       { icon: "Gift", title: "Кейсы со скинами", subtitle: "Уникальные награды" },
     ],
-    maintenance: true,
-    statusLabel: "Технические работы",
   },
 ];
 
