@@ -366,6 +366,65 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
   55% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.96); }
 }
 
+/* ---- Summer glints: sun sparkle on water (cool by default, warm sun motes set inline) ---- */
+.rw-glint {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0;
+  background: radial-gradient(circle, #ffffff 0%, rgba(200, 242, 255, 0.95) 38%, rgba(120, 205, 255, 0.5) 66%, transparent 76%);
+  box-shadow: 0 0 8px 2px rgba(150, 220, 255, 0.55);
+  will-change: transform, opacity;
+  animation: rw-glint-twinkle var(--dur, 4.5s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes rw-glint-twinkle {
+  0%, 100% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.45); }
+  50% { opacity: var(--op, 0.9); transform: translate3d(var(--drift, 0px), calc(-1 * var(--rise, 6px)), 0) scale(1); }
+}
+
+/* ---- Water caustics: sunlight shimmering on the lake (two drifting layers) ---- */
+.rw-caustics {
+  position: absolute;
+  inset: 38% 0 0 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  background:
+    radial-gradient(38% 30% at 22% 78%, rgba(190, 240, 255, 0.14), transparent 62%),
+    radial-gradient(30% 26% at 62% 92%, rgba(150, 225, 255, 0.12), transparent 60%),
+    radial-gradient(44% 26% at 85% 74%, rgba(210, 248, 255, 0.10), transparent 62%);
+  -webkit-mask-image: linear-gradient(to top, #000 8%, transparent 80%);
+  mask-image: linear-gradient(to top, #000 8%, transparent 80%);
+  animation: rw-caustics-a 15s ease-in-out infinite alternate;
+}
+.rw-caustics.b {
+  background:
+    radial-gradient(34% 28% at 40% 88%, rgba(200, 245, 255, 0.10), transparent 60%),
+    radial-gradient(40% 24% at 74% 80%, rgba(160, 230, 255, 0.10), transparent 60%);
+  animation: rw-caustics-b 19s ease-in-out infinite alternate;
+}
+@keyframes rw-caustics-a {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.55; }
+  100% { transform: translate3d(-4%, 1%, 0) scale(1.1); opacity: 1; }
+}
+@keyframes rw-caustics-b {
+  0% { transform: translate3d(0, 0, 0) scale(1.05); opacity: 0.9; }
+  100% { transform: translate3d(5%, -1.5%, 0) scale(0.98); opacity: 0.5; }
+}
+
+/* ---- Soft bokeh orbs (dreamy summer depth; color + blur set inline) ---- */
+.rw-bokeh {
+  position: absolute;
+  border-radius: 999px;
+  will-change: transform, opacity;
+  animation: rw-bokeh-float var(--dur, 20s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes rw-bokeh-float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: var(--op, 0.12); }
+  50% { transform: translate3d(var(--dx, 2%), var(--dy, -3%), 0) scale(1.18); opacity: calc(var(--op, 0.12) * 1.5); }
+}
+
 /* ---- Page-wide drifting ambient glows ---- */
 .rw-drift-glow {
   will-change: transform;
@@ -436,4 +495,5 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
 /* Keep the bar readable (full, static) when motion is reduced */
 @media (prefers-reduced-motion: reduce) {
   .rw-load-bar { left: 0 !important; width: 100% !important; }
+  .rw-glint { opacity: calc(var(--op, 0.9) * 0.5) !important; }
 }

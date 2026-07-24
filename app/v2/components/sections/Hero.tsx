@@ -6,7 +6,7 @@ import { BRAND, HERO_STATS, SERVERS } from "@/v2/lib/content";
 import { Button, Container, LivePill } from "../ui";
 import { Icon } from "../icons";
 import { CountUp, Floaty, Magnetic } from "../motion";
-import { Embers, EmberStream, LightBeams } from "../Effects";
+import { Sparkles, EmberStream, LightBeams, WaterCaustics, Bokeh } from "../Effects";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -53,15 +53,16 @@ export function Hero() {
   return (
     <section id="top" className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden pt-28 pb-16 lg:pt-24">
       {/* ---- Background layers ---- */}
-      {/* Cinematic base image (yours: /public/f.jpg — falls back to an existing shot) */}
+      {/* Summer base image (/public/f.webp — blue lake + green forest). To use your own shot,
+          replace public/f.webp or send it and I'll wire it here. Falls back to /banner.jpg. */}
       <div className="absolute inset-0 -z-40">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/f.webp"
           onError={(e) => {
             const el = e.currentTarget;
-            if (!el.dataset.fallback) {
-              el.dataset.fallback = "1";
+            if (!el.dataset.fb) {
+              el.dataset.fb = "1";
               el.src = "/banner.jpg";
             }
           }}
@@ -71,22 +72,39 @@ export function Hero() {
         />
       </div>
 
-      {/* Light legibility layer — keep the shot visible, darken only where text sits */}
-      <div className="absolute inset-0 -z-30 bg-[var(--rw-bg)]/20" />
-      <div className="absolute inset-0 -z-30 bg-gradient-to-r from-[var(--rw-bg)]/90 from-0% via-[var(--rw-bg)]/45 via-38% to-transparent" />
-      <div className="absolute inset-0 -z-30 bg-gradient-to-t from-[var(--rw-bg)] via-transparent to-[var(--rw-bg)]/25" />
-      {/* Soft vignette */}
+      {/* Legibility layers — summer: reveal the blue water + green forest, darken only where text sits */}
+      <div className="absolute inset-0 -z-30 bg-[var(--rw-bg)]/8" />
+      {/* left headline legibility — softer, clears sooner so the water breathes */}
+      <div className="absolute inset-0 -z-30 bg-gradient-to-r from-[var(--rw-bg)]/85 from-0% via-[var(--rw-bg)]/25 via-34% to-transparent" />
+      {/* bottom blend into the page */}
+      <div className="absolute inset-0 -z-30 bg-gradient-to-t from-[var(--rw-bg)] from-0% via-transparent via-42% to-[var(--rw-bg)]/10" />
+      {/* cool sky lift for summer air */}
       <div
         className="pointer-events-none absolute inset-0 -z-30"
-        style={{ background: "radial-gradient(130% 100% at 50% 45%, transparent 58%, rgba(12,8,5,0.55) 100%)" }}
+        style={{ background: "linear-gradient(to bottom, rgba(120,200,235,0.10), transparent 28%)" }}
       />
-      {/* Atmospheric effects filling the empty space */}
+      {/* soft, lighter vignette */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-30"
+        style={{ background: "radial-gradient(130% 100% at 50% 42%, transparent 62%, rgba(12,8,5,0.42) 100%)" }}
+      />
+      {/* Atmospheric effects — layered summer ambience */}
+      {/* warm summer sun bloom, upper-right */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -z-20"
+        style={{ top: "-14%", right: "-6%", width: 640, height: 640, background: "radial-gradient(circle, rgba(255,224,150,0.26), rgba(255,190,90,0.10) 40%, transparent 66%)", filter: "blur(6px)", mixBlendMode: "screen" }}
+      />
       <LightBeams className="-z-20" />
-      <div className="rw-grid absolute inset-0 -z-20 opacity-70" />
-      <Embers count={34} className="-z-10" />
-      {/* Sparks streaming from the campfire on the rock (right side of the shot) */}
-      <EmberStream x={86} y={66} count={24} className="-z-10 hidden lg:block" />
-      <div className="absolute inset-0 -z-10 rw-noise opacity-[0.05]" />
+      <div className="rw-grid absolute inset-0 -z-20 opacity-40" />
+      {/* sunlight shimmering on the lake */}
+      <WaterCaustics className="-z-20" />
+      {/* dreamy bokeh depth */}
+      <Bokeh count={11} className="-z-10" />
+      <Sparkles count={54} className="-z-10" />
+      {/* Small real campfire on the rock (right side of the shot) — kept subtle */}
+      <EmberStream x={86} y={66} count={10} className="-z-10 hidden lg:block" />
+      <div className="absolute inset-0 -z-10 rw-noise opacity-[0.04]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-[var(--rw-bg)] to-transparent" />
 
       <Container className="relative">

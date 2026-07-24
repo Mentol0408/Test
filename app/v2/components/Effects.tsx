@@ -53,6 +53,114 @@ export function Embers({ count = 40, className }: { count?: number; className?: 
   );
 }
 
+/** Summer glints — sun sparkle twinkling on water (cool) with a few warm sun motes. */
+export function Sparkles({ count = 36, className }: { count?: number; className?: string }) {
+  const items = Array.from({ length: count }, (_, i) => ({
+    top: 4 + rng(i, 12.9898) * 92,
+    left: 2 + rng(i, 78.233) * 95,
+    size: 2 + rng(i, 39.42) * 4,
+    delay: rng(i, 27.16) * 6,
+    dur: 3 + rng(i, 63.7) * 4,
+    drift: (rng(i, 51.31) - 0.5) * 12,
+    rise: 2 + rng(i, 91.2) * 9,
+    op: 0.5 + rng(i, 5.7) * 0.5,
+    warm: rng(i, 88.13) > 0.72, // ~28% warm sun motes, rest cool water glints
+  }));
+
+  return (
+    <div className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)} aria-hidden>
+      {items.map((e, i) => (
+        <span
+          key={i}
+          className="rw-glint"
+          style={
+            {
+              top: `${e.top}%`,
+              left: `${e.left}%`,
+              width: e.size,
+              height: e.size,
+              "--delay": `${e.delay}s`,
+              "--dur": `${e.dur}s`,
+              "--drift": `${e.drift}px`,
+              "--rise": `${e.rise}px`,
+              "--op": e.op,
+              ...(e.warm
+                ? {
+                    background:
+                      "radial-gradient(circle, #fff 0%, rgba(255,228,150,0.95) 40%, rgba(255,190,90,0.5) 66%, transparent 76%)",
+                    boxShadow: "0 0 8px 2px rgba(255,200,110,0.55)",
+                  }
+                : {}),
+            } as CSSProperties
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
+/** Water caustics — sunlight shimmering on the lake surface (two drifting layers). */
+export function WaterCaustics({ className }: { className?: string }) {
+  return (
+    <div className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)} aria-hidden>
+      <div className="rw-caustics" />
+      <div className="rw-caustics b" />
+    </div>
+  );
+}
+
+/** Soft blurred bokeh orbs — warm sun + cool water, drifting for dreamy summer depth. */
+export function Bokeh({ count = 9, className }: { count?: number; className?: string }) {
+  const COLORS = [
+    "255,214,140", // warm sun
+    "150,225,255", // cool water
+    "255,255,255", // white sparkle
+    "180,240,210", // fresh green-cyan
+  ];
+  const orbs = Array.from({ length: count }, (_, i) => {
+    const op = 0.06 + rng(i, 5.7) * 0.12;
+    const ci = Math.floor(rng(i, 21.3) * COLORS.length) % COLORS.length;
+    return {
+      top: rng(i, 12.98) * 90,
+      left: 2 + rng(i, 78.2) * 94,
+      size: 46 + rng(i, 39.4) * 120,
+      blur: 8 + rng(i, 63.7) * 16,
+      dur: 14 + rng(i, 44.1) * 12,
+      delay: rng(i, 27.1) * 8,
+      dx: (rng(i, 51.3) - 0.5) * 8,
+      dy: (rng(i, 88.1) - 0.5) * 8,
+      op,
+      rgb: COLORS[ci],
+    };
+  });
+
+  return (
+    <div className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)} aria-hidden>
+      {orbs.map((o, i) => (
+        <span
+          key={i}
+          className="rw-bokeh"
+          style={
+            {
+              top: `${o.top}%`,
+              left: `${o.left}%`,
+              width: o.size,
+              height: o.size,
+              filter: `blur(${o.blur}px)`,
+              background: `radial-gradient(circle, rgba(${o.rgb},${o.op}), transparent 68%)`,
+              "--dur": `${o.dur}s`,
+              "--delay": `${o.delay}s`,
+              "--dx": `${o.dx}%`,
+              "--dy": `${o.dy}%`,
+              "--op": o.op,
+            } as CSSProperties
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
 /** A plume of sparks rising from a source point (x/y in % of the parent). */
 export function EmberStream({
   x,
@@ -150,7 +258,7 @@ export function PageAtmosphere() {
         }}
       />
       {glows.map((g, i) => {
-        const color = g.warm ? `rgba(255,106,26,${g.op})` : `rgba(255,60,30,${g.op})`;
+        const color = g.warm ? `rgba(255,196,110,${g.op})` : `rgba(72,182,214,${g.op})`;
         const pos: CSSProperties = g.side === "left" ? { left: `${g.off}%` } : { right: `${g.off}%` };
         return (
           <div
@@ -173,7 +281,7 @@ export function PageAtmosphere() {
       {embers.map((e, i) => (
         <span
           key={`e${i}`}
-          className="rw-ember"
+          className="rw-glint"
           style={
             {
               top: `${e.top}%`,
