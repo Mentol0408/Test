@@ -28,7 +28,7 @@ app/v2/
     ├── motion.tsx          # Reveal, Stagger, CountUp, Tilt, Magnetic, Parallax, Floaty, useCopy
     ├── ui.tsx              # Section, Container, SectionHeading, Button, Badge, Panel, LivePill
     └── sections/
-        Hero · Servers · WhyRustWay · FeaturesBento · LiveStats · Gallery ·
+        Hero · Servers · FeaturesBento · LiveStats · Gallery ·
         Trailer · StorePreview · Community · FAQ · FinalCTA · Footer
 ```
 

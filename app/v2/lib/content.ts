@@ -23,7 +23,6 @@ export const SOCIALS = {
 
 export const NAV = [
   { label: "Сервера", href: "#servers" },
-  { label: "Почему мы", href: "#advantages" },
   { label: "Статистика", href: "#stats" },
   { label: "Магазин", href: "/store" },
   { label: "Комьюнити", href: "#community" },
@@ -176,44 +175,6 @@ export const HERO_STATS = [
   { value: 10000, label: "Призовой фонд", prefix: "", suffix: " ₽" },
 ] as const;
 
-/* ---------------------------------------------------------------- Why (advantages) */
-
-export interface Reason {
-  id: string;
-  eyebrow: string; // small uppercase label
-  title: string;
-  text: string;
-  image: string;
-  href: string;
-}
-
-export const REASONS: Reason[] = [
-  {
-    id: "economy",
-    eyebrow: "Донат и экономика",
-    title: "Монеты за каждое действие",
-    text: "Получайте монеты за активность, фарм, лут и сражения. Монеты — основная валюта магазина: их можно тратить на предметы, ресурсы и развитие.",
-    image: "/3.png",
-    href: "/store",
-  },
-  {
-    id: "cases",
-    eyebrow: "Кейсы со скинами",
-    title: "Реальные Steam-скины",
-    text: "Открывайте кейсы с реальными скинами. Выигранные предметы приходят прямо в инвентарь Steam.",
-    image: "/2.png",
-    href: "/cases",
-  },
-  {
-    id: "plugins",
-    eyebrow: "Уникальные плагины",
-    title: "Кастомные механики",
-    text: "Мы заменили стандартные решения на кастомные, которые делают каждый аспект игры — от фарма до рейдов — более глубоким, честным и увлекательным.",
-    image: "/1.png",
-    href: "#features",
-  },
-];
-
 /* ---------------------------------------------------------------- Plugins (bento) */
 
 export interface PluginFeature {
@@ -242,7 +203,7 @@ export const PLUGINS: PluginFeature[] = [
     title: "Рандомные чертежи",
     subtitle: "Изучение рецептов за 60 скрапа у верстака. Честный рандом вместо предсказуемой ветки.",
     servers: ["Hard"],
-    image: "/mode-solo.jpg",
+    image: "/1.png",
     size: "md",
     icon: "Dices",
   },
@@ -260,7 +221,7 @@ export const PLUGINS: PluginFeature[] = [
     title: "Лидерборд игроков",
     subtitle: "Личный рейтинг за онлайн, убийства и фарм. Лучшие получают монеты и статус в топе.",
     servers: ["Hard", "Chill"],
-    image: "/stats-preview.jpg",
+    image: "/3.png",
     size: "sm",
     icon: "Trophy",
   },
@@ -269,7 +230,7 @@ export const PLUGINS: PluginFeature[] = [
     title: "Кейсы со скинами",
     subtitle: "Открывай кейсы за монеты и получай настоящие Steam-скины прямо в свой инвентарь.",
     servers: ["Hard", "Chill"],
-    image: "/cases-interface.png",
+    image: "/2.png",
     size: "sm",
     icon: "Gift",
   },

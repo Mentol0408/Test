@@ -3,7 +3,6 @@ import { Marquee } from "./components/Marquee";
 import { PageAtmosphere } from "./components/Effects";
 import { Hero } from "./components/sections/Hero";
 import { Servers } from "./components/sections/Servers";
-import { WhyRustWay } from "./components/sections/WhyRustWay";
 import { FeaturesBento } from "./components/sections/FeaturesBento";
 import { LiveStats } from "./components/sections/LiveStats";
 import { Gallery } from "./components/sections/Gallery";
@@ -22,7 +21,6 @@ export function HomeV2() {
       <Hero />
       <Marquee />
       <Servers />
-      <WhyRustWay />
       <FeaturesBento />
       <LiveStats />
       <Gallery />
