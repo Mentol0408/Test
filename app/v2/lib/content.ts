@@ -195,7 +195,7 @@ export const PLUGINS: PluginFeature[] = [
       "Еженедельный командный ивент: альянсы, рейды и умный ИИ-подсчёт очков. Топовая деревня забирает 10 000 монет.",
     servers: ["Chill"],
     image: "/mode-villages.jpg",
-    size: "lg",
+    size: "sm",
     icon: "Castle",
   },
   {
@@ -231,7 +231,7 @@ export const PLUGINS: PluginFeature[] = [
     subtitle: "Открывай кейсы за монеты и получай настоящие Steam-скины прямо в свой инвентарь.",
     servers: ["Hard", "Chill"],
     image: "/2.png",
-    size: "sm",
+    size: "lg",
     icon: "Gift",
   },
 ];

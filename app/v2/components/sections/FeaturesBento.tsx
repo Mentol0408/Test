@@ -14,11 +14,11 @@ import { Icon } from "../icons";
 
 /* Explicit lg grid placement for a balanced 3x3 bento. */
 const AREA: Record<string, string> = {
-  "battle-villages": "lg:col-[1/3] lg:row-[1/3]",
+  "cases": "lg:col-[1/3] lg:row-[1/3]",
   "drone-market": "lg:col-[3/4] lg:row-[1/3]",
   "random-research": "lg:col-[1/2] lg:row-[3/4]",
   "leaderboard": "lg:col-[2/3] lg:row-[3/4]",
-  "cases": "lg:col-[3/4] lg:row-[3/4]",
+  "battle-villages": "lg:col-[3/4] lg:row-[3/4]",
 };
 
 function serverTone(name: string): "chill" | "hard" | "vanilla" | "default" {
