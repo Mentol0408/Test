@@ -105,6 +105,7 @@ export function WaterCaustics({ className }: { className?: string }) {
     <div className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)} aria-hidden>
       <div className="rw-caustics" />
       <div className="rw-caustics b" />
+      <div className="rw-caustics c" />
     </div>
   );
 }
