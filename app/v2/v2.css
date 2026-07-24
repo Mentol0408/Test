@@ -407,3 +407,33 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
 
 /* Selection */
 .rw-root ::selection { background: rgba(255, 138, 61, 0.35); color: #fff; }
+
+/* ---- Branded loading screen (indeterminate molten bar) ---- */
+.rw-load-track {
+  position: relative;
+  height: 3px;
+  width: 240px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--rw-panel-2);
+  box-shadow: inset 0 0 0 1px var(--rw-line);
+}
+.rw-load-bar {
+  position: absolute;
+  top: 0;
+  left: -42%;
+  height: 100%;
+  width: 42%;
+  border-radius: 999px;
+  background: var(--rw-grad);
+  box-shadow: 0 0 14px 1px rgba(255, 138, 61, 0.75);
+  animation: rw-load-bar 1.2s var(--rw-ease) infinite;
+}
+@keyframes rw-load-bar {
+  0% { left: -42%; }
+  100% { left: 100%; }
+}
+/* Keep the bar readable (full, static) when motion is reduced */
+@media (prefers-reduced-motion: reduce) {
+  .rw-load-bar { left: 0 !important; width: 100% !important; }
+}
