@@ -481,6 +481,103 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
 /* Selection */
 .rw-root ::selection { background: rgba(255, 138, 61, 0.35); color: #fff; }
 
+/* =====================================================================
+   PREMIUM INTERACTION LAYER — cursor spotlight, shine sweep, live ring,
+   scroll progress. Pointer-driven bits read --mx/--my set in JS.
+   ===================================================================== */
+
+/* ---- Cursor spotlight: a soft glow tracking the pointer across a card ----
+   NB: distinct from the older static `.rw-spot` background helper above. */
+.rw-cursor-glow { position: relative; }
+.rw-cursor-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1; /* above the card's background art, below its z-10 content */
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s var(--rw-ease);
+  background: radial-gradient(
+    var(--spot-size, 440px) circle at var(--mx, 50%) var(--my, 0%),
+    var(--spot-color, rgba(255, 180, 84, 0.16)),
+    transparent 62%
+  );
+}
+.rw-cursor-glow:hover::before { opacity: 1; }
+
+/* ---- Shine sweep: a light bar crosses the card on hover ---- */
+.rw-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 42%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transform: skewX(-14deg);
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.11) 46%, transparent);
+}
+.rw-shine:hover::after { animation: rw-sweep 1.05s ease-out; }
+@keyframes rw-sweep {
+  0% { left: -60%; opacity: 0; }
+  14% { opacity: 1; }
+  100% { left: 125%; opacity: 0; }
+}
+
+/* ---- Live ring: a light travelling around the featured card's border ---- */
+@property --rw-ring-a {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+/* A real element, not a pseudo — ::before/::after are already taken by
+   .rw-cursor-glow and .rw-shine, and one element only gets one of each. */
+.rw-ring {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--rw-ring-a),
+    transparent 0 58%,
+    var(--rw-amber) 72%,
+    #fff 78%,
+    var(--rw-orange) 84%,
+    transparent 96% 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: rw-ring-spin 6s linear infinite;
+}
+@keyframes rw-ring-spin {
+  to { --rw-ring-a: 360deg; }
+}
+
+/* ---- Scroll progress bar (top of viewport) ---- */
+.rw-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 60;
+  transform-origin: 0 50%;
+  background: var(--rw-grad);
+  box-shadow: 0 0 12px 1px rgba(255, 138, 61, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rw-shine::after { display: none; }
+  .rw-ring { animation: none; }
+}
+
 /* ---- Branded loading screen (indeterminate molten bar) ---- */
 .rw-load-track {
   position: relative;

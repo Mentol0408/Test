@@ -295,6 +295,34 @@ export function Floaty({
   );
 }
 
+/* -------------------------------------------------- Spotlight (cursor glow) */
+
+/**
+ * Feeds --mx/--my to an element so the `.rw-cursor-glow` effect (v2.css)
+ * tracks the pointer. Spread onto the card itself — no wrapper, no re-renders:
+ *   <article className="rw-cursor-glow ..." {...useSpotlight()}>
+ */
+export function useSpotlight<T extends HTMLElement = HTMLDivElement>() {
+  const ref = useRef<T>(null);
+  const onPointerMove = (e: React.PointerEvent) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    el.style.setProperty("--my", `${e.clientY - r.top}px`);
+  };
+  return { ref, onPointerMove };
+}
+
+/* -------------------------------------------------- Scroll progress bar */
+
+/** Thin gradient bar across the top showing how far down the page you are. */
+export function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 26, restDelta: 0.001 });
+  return <motion.div className="rw-progress" style={{ scaleX }} aria-hidden />;
+}
+
 /* -------------------------------------------------- Copy-to-clipboard hook */
 
 export function useCopy(timeout = 1800) {

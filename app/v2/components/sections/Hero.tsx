@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { BRAND, HERO_STATS, SERVERS } from "@/v2/lib/content";
 import { Button, Container, LivePill } from "../ui";
 import { Icon } from "../icons";
@@ -50,12 +50,23 @@ export function Hero() {
   const cd = useCountdown();
   const totalOnline = SERVERS.reduce((t, s) => t + (s.online ?? 0), 0);
 
+  /* Scroll parallax: the shot drifts down slower than the page, content lifts away. */
+  const heroRef = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "11%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0px", "-70px"]);
+  const contentFade = useTransform(scrollYProgress, [0.4, 0.95], [1, 0]);
+
   return (
-    <section id="top" className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden pt-28 pb-16 lg:pt-24">
+    <section ref={heroRef} id="top" className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden pt-28 pb-16 lg:pt-24">
       {/* ---- Background layers ---- */}
       {/* Summer base image (/public/f.webp — blue lake + green forest). To use your own shot,
           replace public/f.webp or send it and I'll wire it here. Falls back to /banner.jpg. */}
-      <div className="absolute inset-0 -z-40">
+      <motion.div
+        className="absolute -top-[10%] left-0 right-0 -z-40 h-[120%]"
+        style={{ y: reduce ? 0 : bgY }}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/f.webp"
@@ -70,7 +81,7 @@ export function Hero() {
           aria-hidden
           className="h-full w-full object-cover object-center"
         />
-      </div>
+      </motion.div>
 
       {/* Legibility layers — summer: reveal the blue water + green forest, darken only where text sits */}
       <div className="absolute inset-0 -z-30 bg-[var(--rw-bg)]/8" />
@@ -108,7 +119,10 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-[var(--rw-bg)] to-transparent" />
 
       <Container className="relative">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+        <motion.div
+          className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]"
+          style={reduce ? undefined : { y: contentY, opacity: contentFade }}
+        >
           {/* ---- Left: headline ---- */}
           <div className="flex flex-col items-start">
             <motion.div
@@ -263,7 +277,7 @@ export function Hero() {
               </div>
             </Floaty>
           </div>
-        </div>
+        </motion.div>
       </Container>
 
       {/* Scroll cue */}

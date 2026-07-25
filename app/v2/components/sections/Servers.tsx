@@ -10,7 +10,7 @@
 import { cn } from "@/v2/lib/cn";
 import { SERVERS, type ServerData } from "@/v2/lib/content";
 import { Section, SectionHeading, Badge } from "../ui";
-import { Reveal, useCopy } from "../motion";
+import { Reveal, useCopy, useSpotlight } from "../motion";
 import { Icon } from "../icons";
 
 function accentVar(key: ServerData["key"]) {
@@ -43,6 +43,7 @@ function StatCell({ icon, label, value, note, accent }: { icon: string; label: s
 
 function ServerCard({ server, index }: { server: ServerData; index: number }) {
   const { copied, copy } = useCopy();
+  const spot = useSpotlight<HTMLElement>();
   const accent = accentVar(server.key);
   const maintenance = Boolean(server.maintenance);
   const pct = server.online != null ? Math.min(100, Math.round((server.online / server.capacity) * 100)) : 0;
@@ -51,11 +52,15 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
   return (
     <Reveal delay={index * 0.08}>
       <article
+        {...spot}
+        style={{ "--spot-color": `color-mix(in srgb, ${accent} 22%, transparent)` } as React.CSSProperties}
         className={cn(
-          "group relative overflow-hidden rounded-3xl rw-glass rw-topline p-5 transition-all duration-500 hover:-translate-y-1 sm:p-6",
+          "group relative overflow-hidden rounded-3xl rw-glass rw-topline rw-cursor-glow rw-shine p-5 transition-all duration-500 hover:-translate-y-1 sm:p-6",
           maintenance && "opacity-[0.78]",
         )}
       >
+        {/* Travelling light around the featured card's border */}
+        {server.featured && !maintenance && <span aria-hidden className="rw-ring" />}
         {/* Full-card background art */}
         <div aria-hidden className="absolute inset-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -73,7 +78,7 @@ function ServerCard({ server, index }: { server: ServerData; index: number }) {
         />
         <span aria-hidden className="absolute left-0 top-0 h-full w-1.5 rounded-r" style={{ background: `linear-gradient(180deg, ${accent}, color-mix(in srgb, ${accent} 40%, transparent))` }} />
 
-        <div className="relative grid gap-5 lg:grid-cols-[1.62fr_1fr]">
+        <div className="relative z-10 grid gap-5 lg:grid-cols-[1.62fr_1fr]">
           {/* ============ LEFT ============ */}
           <div className="flex min-w-0 flex-col gap-5">
             {/* Identity */}

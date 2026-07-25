@@ -9,7 +9,7 @@
 
 import { PLUGINS, type PluginFeature } from "@/v2/lib/content";
 import { Section, SectionHeading, Badge } from "../ui";
-import { Reveal } from "../motion";
+import { Reveal, useSpotlight } from "../motion";
 import { Icon } from "../icons";
 
 /* Explicit lg grid placement for a balanced 3x3 bento. */
@@ -31,9 +31,11 @@ function serverTone(name: string): "chill" | "hard" | "vanilla" | "default" {
 
 function BentoTile({ item }: { item: PluginFeature }) {
   const big = item.size === "lg";
+  const spot = useSpotlight<HTMLElement>();
   return (
     <article
-      className={`group relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-2xl border border-[var(--rw-line)] ${AREA[item.id] ?? ""} ${big ? "sm:col-span-2 lg:min-h-0" : ""}`}
+      {...spot}
+      className={`group relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-2xl border border-[var(--rw-line)] rw-cursor-glow rw-shine transition-transform duration-500 hover:-translate-y-1 ${AREA[item.id] ?? ""} ${big ? "sm:col-span-2 lg:min-h-0" : ""}`}
     >
       {/* Image */}
       {/* eslint-disable-next-line @next/next/no-img-element */}

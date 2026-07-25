@@ -1,6 +1,7 @@
 import { Navbar } from "./components/Navbar";
 import { Marquee } from "./components/Marquee";
 import { PageAtmosphere } from "./components/Effects";
+import { ScrollProgress } from "./components/motion";
 import { Hero } from "./components/sections/Hero";
 import { Servers } from "./components/sections/Servers";
 import { FeaturesBento } from "./components/sections/FeaturesBento";
@@ -16,6 +17,7 @@ import { Footer } from "./components/sections/Footer";
 export function HomeV2() {
   return (
     <main className="relative isolate overflow-x-clip">
+      <ScrollProgress />
       <PageAtmosphere />
       <Navbar />
       <Hero />
