@@ -7,6 +7,7 @@ import { Button, Container, LivePill } from "../ui";
 import { Icon } from "../icons";
 import { CountUp, Floaty, Magnetic } from "../motion";
 import { Sparkles, EmberStream, LightBeams, WaterCaustics, Bokeh } from "../Effects";
+import { Water3D } from "../Water";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -80,8 +81,35 @@ export function Hero() {
           alt=""
           aria-hidden
           className="h-full w-full object-cover object-center"
+          style={{ filter: "saturate(1.38) contrast(1.07) brightness(1.07)" }}
         />
       </motion.div>
+
+      {/* Tropical grade: recolour the lake toward turquoise (hue+saturation only,
+          `color` blending keeps the photo's own luminance and detail). */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%]"
+        style={{
+          zIndex: -36,
+          mixBlendMode: "color",
+          opacity: 0.55,
+          background: "linear-gradient(to top, #12c8d8 0%, #1fb9d6 55%, transparent 100%)",
+        }}
+      />
+      {/* Sky lift — brighter tropical blue up top */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-[42%]"
+        style={{
+          zIndex: -36,
+          mixBlendMode: "screen",
+          background: "linear-gradient(to bottom, rgba(90,190,255,0.20), transparent 82%)",
+        }}
+      />
+
+      {/* Live 3D water on the lake — sits above the shot, below the legibility layers */}
+      <Water3D style={{ zIndex: -35 }} />
 
       {/* Legibility layers — summer: reveal the blue water + green forest, darken only where text sits */}
       <div className="absolute inset-0 -z-30 bg-[var(--rw-bg)]/8" />
