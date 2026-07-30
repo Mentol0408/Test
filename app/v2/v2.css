@@ -366,13 +366,13 @@ html { scrollbar-color: rgba(255, 138, 61, 0.45) #140d09; }
   55% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.96); }
 }
 
-/* ---- Summer glints: sun sparkle on water (cool by default, warm sun motes set inline) ---- */
+/* ---- Warm glints: subtle amber sparkles without a cool color cast ---- */
 .rw-glint {
   position: absolute;
   border-radius: 999px;
   opacity: 0;
-  background: radial-gradient(circle, #ffffff 0%, rgba(200, 242, 255, 0.95) 38%, rgba(120, 205, 255, 0.5) 66%, transparent 76%);
-  box-shadow: 0 0 8px 2px rgba(150, 220, 255, 0.55);
+  background: radial-gradient(circle, #ffffff 0%, rgba(255, 228, 170, 0.95) 38%, rgba(255, 170, 90, 0.5) 66%, transparent 76%);
+  box-shadow: 0 0 8px 2px rgba(255, 190, 110, 0.45);
   will-change: transform, opacity;
   animation: rw-glint-twinkle var(--dur, 4.5s) ease-in-out infinite;
   animation-delay: var(--delay, 0s);

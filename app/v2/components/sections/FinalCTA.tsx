@@ -19,7 +19,6 @@ export function FinalCTA() {
       </div>
       <div className="absolute inset-0 -z-20 bg-gradient-to-b from-[var(--rw-bg)] via-[var(--rw-bg)]/85 to-[var(--rw-bg)]" />
       <div className="rw-aurora -z-20" />
-      <div className="rw-grid absolute inset-0 -z-20" />
 
       <Container className="relative text-center">
         <Reveal>

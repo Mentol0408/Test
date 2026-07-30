@@ -6,7 +6,7 @@ import { BRAND, HERO_STATS, SERVERS } from "@/v2/lib/content";
 import { Button, Container, LivePill } from "../ui";
 import { Icon } from "../icons";
 import { CountUp, Floaty, Magnetic } from "../motion";
-import { Sparkles, LightBeams, WaterCaustics, Bokeh } from "../Effects";
+import { Sparkles, LightBeams, Bokeh } from "../Effects";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -80,28 +80,6 @@ export function Hero() {
         </video>
       </motion.div>
 
-      {/* Tropical grade: recolour the lake toward turquoise (hue+saturation only,
-          `color` blending keeps the photo's own luminance and detail). */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%]"
-        style={{
-          zIndex: -36,
-          mixBlendMode: "color",
-          opacity: 0.55,
-          background: "linear-gradient(to top, #12c8d8 0%, #1fb9d6 55%, transparent 100%)",
-        }}
-      />
-      {/* Sky lift — brighter tropical blue up top */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[42%]"
-        style={{
-          zIndex: -36,
-          mixBlendMode: "screen",
-          background: "linear-gradient(to bottom, rgba(90,190,255,0.20), transparent 82%)",
-        }}
-      />
 
       {/* Legibility layers — summer: reveal the blue water + green forest, darken only where text sits */}
       <div className="absolute inset-0 -z-30 bg-[var(--rw-bg)]/8" />
@@ -109,11 +87,6 @@ export function Hero() {
       <div className="absolute inset-0 -z-30 bg-gradient-to-r from-[var(--rw-bg)]/85 from-0% via-[var(--rw-bg)]/25 via-34% to-transparent" />
       {/* bottom blend into the page */}
       <div className="absolute inset-0 -z-30 bg-gradient-to-t from-[var(--rw-bg)] from-0% via-transparent via-42% to-[var(--rw-bg)]/10" />
-      {/* cool sky lift for summer air */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-30"
-        style={{ background: "linear-gradient(to bottom, rgba(120,200,235,0.10), transparent 28%)" }}
-      />
       {/* soft, lighter vignette */}
       <div
         className="pointer-events-none absolute inset-0 -z-30"
@@ -127,9 +100,6 @@ export function Hero() {
         style={{ top: "-14%", right: "-6%", width: 640, height: 640, background: "radial-gradient(circle, rgba(255,224,150,0.26), rgba(255,190,90,0.10) 40%, transparent 66%)", filter: "blur(6px)", mixBlendMode: "screen" }}
       />
       <LightBeams className="-z-20" />
-      <div className="rw-grid absolute inset-0 -z-20 opacity-40" />
-      {/* sunlight shimmering on the lake */}
-      <WaterCaustics className="-z-20" />
       {/* dreamy bokeh depth */}
       <Bokeh count={11} className="-z-10" />
       <Sparkles count={54} className="-z-10" />

@@ -114,9 +114,8 @@ export function WaterCaustics({ className }: { className?: string }) {
 export function Bokeh({ count = 9, className }: { count?: number; className?: string }) {
   const COLORS = [
     "255,214,140", // warm sun
-    "150,225,255", // cool water
     "255,255,255", // white sparkle
-    "180,240,210", // fresh green-cyan
+    "255,190,120", // soft amber
   ];
   const orbs = Array.from({ length: count }, (_, i) => {
     const op = 0.06 + rng(i, 5.7) * 0.12;
@@ -251,15 +250,8 @@ export function PageAtmosphere() {
 
   return (
     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
-      <div
-        className="rw-grid absolute inset-0 opacity-40"
-        style={{
-          WebkitMaskImage: "linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent)",
-          maskImage: "linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent)",
-        }}
-      />
       {glows.map((g, i) => {
-        const color = g.warm ? `rgba(255,196,110,${g.op})` : `rgba(72,182,214,${g.op})`;
+        const color = `rgba(255,196,110,${g.op})`;
         const pos: CSSProperties = g.side === "left" ? { left: `${g.off}%` } : { right: `${g.off}%` };
         return (
           <div

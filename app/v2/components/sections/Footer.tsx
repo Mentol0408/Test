@@ -11,7 +11,6 @@ export function Footer() {
 
   return (
     <footer className="relative border-t border-[var(--rw-line)] bg-[var(--rw-bg-2)]">
-      <div className="rw-grid absolute inset-0 opacity-40" />
       <Container className="relative">
         <div className="grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           {/* Brand */}

@@ -19,7 +19,6 @@ export function Community() {
     <Section id="community" bare className="relative overflow-hidden">
       {/* Atmospheric backdrop */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="rw-grid absolute inset-0 opacity-60" />
         <div className="rw-spot absolute inset-x-0 top-0 h-[420px]" />
       </div>
 
