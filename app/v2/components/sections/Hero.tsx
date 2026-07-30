@@ -6,7 +6,6 @@ import { BRAND, HERO_STATS, SERVERS } from "@/v2/lib/content";
 import { Button, Container, LivePill } from "../ui";
 import { Icon } from "../icons";
 import { CountUp, Floaty, Magnetic } from "../motion";
-import { Sparkles, LightBeams, Bokeh } from "../Effects";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -92,18 +91,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 -z-30"
         style={{ background: "radial-gradient(130% 100% at 50% 42%, transparent 62%, rgba(12,8,5,0.42) 100%)" }}
       />
-      {/* Atmospheric effects — layered summer ambience */}
-      {/* warm summer sun bloom, upper-right */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -z-20"
-        style={{ top: "-14%", right: "-6%", width: 640, height: 640, background: "radial-gradient(circle, rgba(255,224,150,0.26), rgba(255,190,90,0.10) 40%, transparent 66%)", filter: "blur(6px)", mixBlendMode: "screen" }}
-      />
-      <LightBeams className="-z-20" />
-      {/* dreamy bokeh depth */}
-      <Bokeh count={11} className="-z-10" />
-      <Sparkles count={54} className="-z-10" />
-      <div className="absolute inset-0 -z-10 rw-noise opacity-[0.04]" />
+      {/* Keep the hero footage crisp: no atmospheric blur, bloom, bokeh or noise overlays. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-[var(--rw-bg)] to-transparent" />
 
       <Container className="relative">
