@@ -6,8 +6,7 @@ import { BRAND, HERO_STATS, SERVERS } from "@/v2/lib/content";
 import { Button, Container, LivePill } from "../ui";
 import { Icon } from "../icons";
 import { CountUp, Floaty, Magnetic } from "../motion";
-import { Sparkles, EmberStream, LightBeams, WaterCaustics, Bokeh } from "../Effects";
-import { Water3D } from "../Water";
+import { Sparkles, LightBeams, WaterCaustics, Bokeh } from "../Effects";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -62,27 +61,23 @@ export function Hero() {
   return (
     <section ref={heroRef} id="top" className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden pt-28 pb-16 lg:pt-24">
       {/* ---- Background layers ---- */}
-      {/* Summer base image (/public/f.webp — blue lake + green forest). To use your own shot,
-          replace public/f.webp or send it and I'll wire it here. Falls back to /banner.jpg. */}
+      {/* Looping hero footage from /public. Muted playback is required for browser autoplay. */}
       <motion.div
         className="absolute -top-[10%] left-0 right-0 -z-40 h-[120%]"
         style={{ y: reduce ? 0 : bgY }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/f.webp"
-          onError={(e) => {
-            const el = e.currentTarget;
-            if (!el.dataset.fb) {
-              el.dataset.fb = "1";
-              el.src = "/banner.jpg";
-            }
-          }}
-          alt=""
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
           aria-hidden
           className="h-full w-full object-cover object-center"
           style={{ filter: "saturate(1.38) contrast(1.07) brightness(1.07)" }}
-        />
+        >
+          <source src="/seedance-1785232085191.mp4" type="video/mp4" />
+        </video>
       </motion.div>
 
       {/* Tropical grade: recolour the lake toward turquoise (hue+saturation only,
@@ -107,9 +102,6 @@ export function Hero() {
           background: "linear-gradient(to bottom, rgba(90,190,255,0.20), transparent 82%)",
         }}
       />
-
-      {/* Live 3D water on the lake — sits above the shot, below the legibility layers */}
-      <Water3D style={{ zIndex: -35 }} />
 
       {/* Legibility layers — summer: reveal the blue water + green forest, darken only where text sits */}
       <div className="absolute inset-0 -z-30 bg-[var(--rw-bg)]/8" />
@@ -141,8 +133,6 @@ export function Hero() {
       {/* dreamy bokeh depth */}
       <Bokeh count={11} className="-z-10" />
       <Sparkles count={54} className="-z-10" />
-      {/* Small real campfire on the rock (right side of the shot) — kept subtle */}
-      <EmberStream x={86} y={66} count={10} className="-z-10 hidden lg:block" />
       <div className="absolute inset-0 -z-10 rw-noise opacity-[0.04]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-[var(--rw-bg)] to-transparent" />
 
@@ -266,8 +256,8 @@ export function Hero() {
             <Floaty amplitude={6} duration={8} delay={1} className="absolute right-0 top-[332px] w-[300px]">
               <div className="rw-glass rounded-2xl p-5">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--rw-chill)]/15 text-[var(--rw-chill)]">
-                    <Icon name="Castle" size={22} />
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--rw-chill)]/70 bg-[var(--rw-chill)]/30 text-[var(--rw-chill)] shadow-[0_8px_18px_rgba(0,0,0,0.35)]">
+                    <Icon name="Castle" size={26} strokeWidth={2.5} />
                   </span>
                   <div>
                     <div className="text-[15px] font-semibold text-[var(--rw-text)]">Битва деревень</div>
@@ -280,8 +270,8 @@ export function Hero() {
             <Floaty amplitude={6} duration={6.5} delay={0.5} className="absolute right-5 top-[228px] w-[288px]">
               <div className="rw-glass rounded-2xl p-5">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--rw-orange)]/15 text-[var(--rw-amber)]">
-                    <Icon name="Gift" size={22} />
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--rw-orange)]/70 bg-[var(--rw-orange)]/30 text-[var(--rw-amber)] shadow-[0_8px_18px_rgba(0,0,0,0.35)]">
+                    <Icon name="Gift" size={26} strokeWidth={2.5} />
                   </span>
                   <div>
                     <div className="text-[15px] font-semibold text-[var(--rw-text)]">Реальные скины</div>
@@ -294,8 +284,8 @@ export function Hero() {
             <Floaty amplitude={6} duration={7.5} delay={1.5} className="absolute right-3 top-[436px] w-[304px]">
               <div className="rw-glass rounded-2xl p-5">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--rw-hard)]/15 text-[var(--rw-hard)]">
-                    <Icon name="Skull" size={22} />
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--rw-hard)]/70 bg-[var(--rw-hard)]/30 text-[var(--rw-hard)] shadow-[0_8px_18px_rgba(0,0,0,0.35)]">
+                    <Icon name="Skull" size={26} strokeWidth={2.5} />
                   </span>
                   <div>
                     <div className="text-[15px] font-semibold text-[var(--rw-text)]">Баунти турнир</div>

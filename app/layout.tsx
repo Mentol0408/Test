@@ -1,13 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import "./v2/v2.css";
 import { rwFontVars } from "./v2/fonts";
-
-const TikTokSans = Inter({
-  variable: "--font-tiktok-sans",
-  subsets: ["latin", "cyrillic"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.APP_BASE_URL || "https://rust-way.ru"),
@@ -32,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`rw-root ${rwFontVars} ${TikTokSans.variable} antialiased`}>
+      <body className={`rw-root ${rwFontVars} antialiased`}>
         {children}
       </body>
     </html>

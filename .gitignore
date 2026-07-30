@@ -46,3 +46,5 @@ _deleted/
 .tools/
 dev.err.log
 dev.out.log
+dev-server*.log
+local-next*.log
